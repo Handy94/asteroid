@@ -1,7 +1,7 @@
 ﻿namespace HandyPackage
 {
-    using UnityEngine;
     using System.Collections.Generic;
+    using UnityEngine;
 
     public abstract class AppContext : MonoBehaviour
     {
@@ -42,6 +42,7 @@
         }
         private void OnDestroy()
         {
+            ClearContainer();
         }
     }
 }
