@@ -13,6 +13,9 @@
 
         public UniTask Initialize()
         {
+            _gameSignals = DIResolver.GetObject<GameSignals>();
+            _bookKeepingInGameData = DIResolver.GetObject<BookKeepingInGameData>();
+
             _gameSignals.PlayerDespawnedSignal.Listen(HandlePlayerDespawned, PlayerDespawnedPrioritySignal.Priority.DECREASE_PLAYER_LIFE).AddTo(disposables);
 
             return UniTask.CompletedTask;
