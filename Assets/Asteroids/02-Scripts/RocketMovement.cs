@@ -16,39 +16,30 @@
             if (rb == null) rb = GetComponent<Rigidbody2D>();
         }
 
-        public void ThrustMove()
+        private void FixedUpdate()
+        {
+            ThrustMove();
+            ThrustRotation();
+        }
+
+        private void ThrustMove()
         {
             rb.AddRelativeForce(Vector2.up * _vInput * Time.deltaTime * thrustPower);
         }
 
-        public void ThrustRotation()
+        private void ThrustRotation()
         {
             rb.AddTorque(_hInput * turnThrustPower * Time.deltaTime);
         }
 
-        public void ThrustForward()
+        public void MoveRocket(float vAxis)
         {
-            _vInput = 1;
+            _vInput = vAxis;
         }
 
-        public void StopThrustForward()
+        public void RotateRocket(float hAxis)
         {
-            _vInput = 0;
-        }
-
-        public void ThrustLeft()
-        {
-            _hInput = 1;
-        }
-
-        public void ThrustRight()
-        {
-            _hInput = -1;
-        }
-
-        public void StopThrustRotation()
-        {
-            _hInput = 0;
+            _hInput = hAxis;
         }
     }
 

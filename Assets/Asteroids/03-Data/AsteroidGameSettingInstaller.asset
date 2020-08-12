@@ -14,5 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isEnabled: 1
   AsteroidGameSettings:
-    minViewportPosition: {x: -0.05, y: -0.05}
-    maxViewportPosition: {x: 1.05, y: 1.05}
+    minWrapViewportPosition: {x: -0.1, y: -0.1}
+    maxWrapViewportPosition: {x: 1.1, y: 1.1}
+    minAsteroidSpawnAdditionalViewportPosition: {x: 0.05, y: 0.05}
+    maxAsteroidSpawnAdditionalViewportPosition: {x: 0.08, y: 0.08}
+    asteroidPrefab: {fileID: 2706327599005191366, guid: 16cb039b8b46024468a4df86f348cce1,
+      type: 3}
+    spawnTime: 1

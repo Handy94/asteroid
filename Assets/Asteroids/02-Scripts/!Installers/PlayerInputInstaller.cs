@@ -4,18 +4,23 @@
 
     public class PlayerInputInstaller : MonoInstaller
     {
-        public PlayerRocketMovementInputSystem playerRocketMovementInputSystem;
+        public RocketMovement rocketMovement;
+        public PlayerWeapon playerWeapon;
 
         public override void InstallDependencies()
         {
-            Container.Install<InputManager>();
-
             InstallMovementSystem();
+            InstallWeaponSystem();
         }
 
         private void InstallMovementSystem()
         {
-            Container.Install<PlayerRocketMovementInputSystem>(playerRocketMovementInputSystem);
+            Container.Install(new PlayerMovementInputSystem(rocketMovement));
+        }
+
+        private void InstallWeaponSystem()
+        {
+            Container.Install(new PlayerShootInputSystem(playerWeapon));
         }
     }
 }
