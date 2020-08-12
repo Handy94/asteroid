@@ -35,7 +35,7 @@ namespace Asteroid
 
         private void OnHealthChanged(int health)
         {
-            _gameSignals.GameEntityDespawnedSignal.Fire(gameObject, gameEntityTagComponent.GameEntityTag);
+            _gameSignals.GameEntityDespawnedSignal.Fire(gameObject, gameEntityTagComponent.GameEntityTag, GameEntityTag.BULLET);
         }
     }
 

@@ -16,6 +16,8 @@
             InstallAsteroidSystem();
 
             InstallGameSystem();
+
+            InstallScoreSystem();
         }
 
         private void InstallFrameworkSystems()
@@ -51,6 +53,12 @@
             Container.Install<PositionWrapperSystem>();
             Container.Install<DamageOnCollideTriggerSystem>();
             Container.Install<DecreasePlayerLifeOnDeadSystem>();
+        }
+
+        private void InstallScoreSystem()
+        {
+            Container.Install<ScoreSystem>();
+            Container.Install<AddScoreOnDestroyingAsteroidSystem>();
         }
     }
 }

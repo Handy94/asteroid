@@ -39,7 +39,7 @@
             }
         }
 
-        private void HandleGameEntityDespawned(GameObject go, GameEntityTag gameEntityTag)
+        private void HandleGameEntityDespawned(GameObject go, GameEntityTag gameEntityTag, GameEntityTag despawner)
         {
             if (gameEntityTag != GameEntityTag.BULLET) return;
             DespawnBullet(go.GetComponent<BulletComponent>());

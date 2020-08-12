@@ -86,7 +86,7 @@
             if (!_transformList.Contains(asteroidComponent.transform)) _transformList.Add(asteroidComponent.transform);
         }
 
-        private void HandleAsteroidDespawned(AsteroidComponent asteroidComponent)
+        private void HandleAsteroidDespawned(AsteroidComponent asteroidComponent, GameEntityTag despawner)
         {
             if (_transformList.Contains(asteroidComponent.transform)) _transformList.Remove(asteroidComponent.transform);
         }

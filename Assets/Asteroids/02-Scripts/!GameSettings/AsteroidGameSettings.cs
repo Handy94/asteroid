@@ -18,6 +18,9 @@
         [Header("Player")]
         public PlayerRocketController playerPrefab;
         public float respawnDelayInSeconds = 3;
+
+        [Header("Score")]
+        public int scorePerAsteroid = 10;
     }
 
 }

@@ -22,9 +22,19 @@
 
         private void OnEnable()
         {
-            _bookKeepingInGameData.PlayerLife.Subscribe(lifeValue =>
+            _bookKeepingInGameData.PlayerLife.Subscribe(val =>
             {
-                textPlayerLife.text = $"Player Life : {lifeValue}";
+                textPlayerLife.text = $"Player Life : {val}";
+            }).AddTo(disposables);
+
+            _bookKeepingInGameData.Score.Subscribe(val =>
+            {
+                textScore.text = $"Score : {val}";
+            }).AddTo(disposables);
+
+            _bookKeepingInGameData.HighScore.Subscribe(val =>
+            {
+                textHighScore.text = $"{val}";
             }).AddTo(disposables);
         }
 

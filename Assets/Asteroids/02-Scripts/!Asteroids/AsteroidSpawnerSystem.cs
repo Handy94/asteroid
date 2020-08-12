@@ -61,10 +61,10 @@
             }
         }
 
-        private void HandleGameEntityDespawned(GameObject go, GameEntityTag gameEntityTag)
+        private void HandleGameEntityDespawned(GameObject go, GameEntityTag gameEntityTag, GameEntityTag despawner)
         {
             if (gameEntityTag != GameEntityTag.ASTEROID) return;
-            DespawnAsteroid(go.GetComponent<AsteroidComponent>());
+            DespawnAsteroid(go.GetComponent<AsteroidComponent>(), despawner);
         }
 
         private async void SpawnAsteroid(GameObject prefab)
@@ -101,9 +101,9 @@
             currentSpawned++;
         }
 
-        private void DespawnAsteroid(AsteroidComponent asteroidComponent)
+        private void DespawnAsteroid(AsteroidComponent asteroidComponent, GameEntityTag despawner)
         {
-            _gameSignals.AsteroidDespawnedSignal.Fire(asteroidComponent);
+            _gameSignals.AsteroidDespawnedSignal.Fire(asteroidComponent, despawner);
             _multiplePrefabMemoryPool.DespawnObject(asteroidComponent.gameObject);
             currentSpawned--;
         }
