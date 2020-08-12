@@ -8,17 +8,49 @@
         {
             InstallFrameworkSystems();
 
-            Container.Install<GameSignals>();
-            Container.Install<PositionWrapperSystem>();
-            Container.Install<BulletSpawnerSystem>();
-            Container.Install<AsteroidSpawnerSystem>();
+            InstallMainDependencies();
 
-            Container.Install<DamageOnCollideTriggerSystem>();
+            InstallPlayerSystem();
+
+            InstallBulletSystem();
+            InstallAsteroidSystem();
+
+            InstallGameSystem();
         }
 
         private void InstallFrameworkSystems()
         {
             Container.Install<MultiplePrefabMemoryPool>();
+        }
+
+        private void InstallMainDependencies()
+        {
+            Container.Install<GameSignals>();
+            Container.Install<BookKeepingInGameData>();
+        }
+
+        private void InstallPlayerSystem()
+        {
+            PlayerInputInstaller.Install(Container);
+            Container.Install<PlayerSpawnerSystem>();
+            Container.Install<PlayerRespawnSystem>();
+        }
+
+        private void InstallBulletSystem()
+        {
+            Container.Install<BulletSpawnerSystem>();
+        }
+
+        private void InstallAsteroidSystem()
+        {
+            Container.Install<AsteroidSpawnerSystem>();
+        }
+
+        private void InstallGameSystem()
+        {
+            Container.Install<PositionWrapperSystem>();
+            Container.Install<DamageOnCollideTriggerSystem>();
+            Container.Install<DecreasePlayerLifeOnDeadSystem>();
         }
     }
 }

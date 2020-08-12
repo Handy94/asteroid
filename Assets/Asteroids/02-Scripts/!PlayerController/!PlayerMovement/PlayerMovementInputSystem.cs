@@ -1,17 +1,19 @@
-﻿namespace Asteroid
-{
-    using HandyPackage;
-    using UniRx;
-    using UniRx.Async;
-    using UnityEngine;
+﻿using HandyPackage;
+using UniRx;
+using UniRx.Async;
+using UnityEngine;
 
-    public class PlayerShootInputSystem : IInitializable, System.IDisposable, IPlayerInputListener
+namespace Asteroid
+{
+    public class PlayerMovementInputSystem : IInitializable, System.IDisposable, IPlayerInputListener
     {
-        private const string INPUT_SHOOT_NAME = "Fire1";
+        private const string INPUT_AXIS_VERTICAL = "Vertical";
+        private const string INPUT_AXIS_HORIZONTAL = "Horizontal";
 
         private GameSignals _gameSignals;
 
-        private IWeapon _playerWeapon;
+        private RocketMovement _rocketMovement;
+        private bool _canInput;
         private CompositeDisposable disposables = new CompositeDisposable();
         private CompositeDisposable inputDisposables = new CompositeDisposable();
 
@@ -20,7 +22,7 @@
             _gameSignals = DIResolver.GetObject<GameSignals>();
 
             _gameSignals.PlayerSpawnedSignal.Listen(HandlePlayerSpawned).AddTo(disposables);
-            _gameSignals.PlayerDespawnedSignal.Listen(HandlePlayerDespawned, PlayerDespawnedPrioritySignal.Priority.UNLISTEN_PLAYER_SHOOT_INPUT).AddTo(disposables);
+            _gameSignals.PlayerDespawnedSignal.Listen(HandlePlayerDespawned, PlayerDespawnedPrioritySignal.Priority.UNLISTEN_PLAYER_MOVE_INPUT).AddTo(disposables);
 
             return UniTask.CompletedTask;
         }
@@ -28,18 +30,19 @@
         public void Dispose()
         {
             UnlistenForPlayerInput();
+            disposables.Clear();
         }
 
         private void HandlePlayerSpawned(PlayerRocketController playerRocketController)
         {
-            _playerWeapon = playerRocketController.PlayerWeapon;
+            _rocketMovement = playerRocketController.RocketMovement;
             ListenForPlayerInput();
         }
 
         private bool HandlePlayerDespawned(PlayerRocketController playerRocketController)
         {
             UnlistenForPlayerInput();
-            _playerWeapon = null;
+            _rocketMovement = null;
             return true;
         }
 
@@ -58,15 +61,11 @@
 
         private void CheckInput()
         {
-            if (Input.GetButton(INPUT_SHOOT_NAME))
-            {
-                _playerWeapon.Shoot();
-            }
-            else if (Input.GetButtonUp(INPUT_SHOOT_NAME))
-            {
-                _playerWeapon.StopShoot();
-            }
+            float vAxis = Mathf.Clamp(Input.GetAxisRaw(INPUT_AXIS_VERTICAL), 0, 1);
+            float hAxis = Input.GetAxisRaw(INPUT_AXIS_HORIZONTAL);
+
+            _rocketMovement?.MoveRocket(vAxis);
+            _rocketMovement?.RotateRocket(-hAxis);
         }
     }
-
 }

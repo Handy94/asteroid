@@ -20,4 +20,7 @@ MonoBehaviour:
     maxAsteroidSpawnAdditionalViewportPosition: {x: 0.08, y: 0.08}
     asteroidPrefab: {fileID: 2706327599005191366, guid: 16cb039b8b46024468a4df86f348cce1,
       type: 3}
-    spawnTime: 1
+    asteroidSpawnTime: 1
+    maxAsteroidCount: 10
+    playerPrefab: {fileID: 5494867434051232000, guid: 7ee2302d865938046a8b2453dc703089,
+      type: 3}

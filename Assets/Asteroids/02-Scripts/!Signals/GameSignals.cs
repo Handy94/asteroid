@@ -14,6 +14,9 @@
 
         public EventSignal<GameObject, GameEntityTag> GameEntityDespawnedSignal = new EventSignal<GameObject, GameEntityTag>();
         public EventSignal<GameEntityTagComponent, GameEntityTagComponent> GameEntityCollisionTriggeredSignal = new EventSignal<GameEntityTagComponent, GameEntityTagComponent>();
+
+        public EventSignal<PlayerRocketController> PlayerSpawnedSignal = new EventSignal<PlayerRocketController>();
+        public PlayerDespawnedPrioritySignal PlayerDespawnedSignal = new PlayerDespawnedPrioritySignal();
     }
 
 }

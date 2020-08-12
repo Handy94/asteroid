@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7435538152357355294}
   - component: {fileID: 7435538152357355288}
   - component: {fileID: 7435538152357355291}
+  - component: {fileID: 5494867434051232000}
   - component: {fileID: 7435538152357355289}
   - component: {fileID: 6673571106975692983}
   - component: {fileID: 230776902724750513}
@@ -86,6 +87,20 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &5494867434051232000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7435538152357355290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41fd6f992c69eb24b85daabd692074f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RocketMovement: {fileID: 7435538152357355289}
+  PlayerWeapon: {fileID: 7235959864630910039}
 --- !u!114 &7435538152357355289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,3 +323,15 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 3029462911413478383}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7235959864630910039 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5647966240749813688, guid: 80ff2cd186c82344298a8dae3db7297d,
+    type: 3}
+  m_PrefabInstance: {fileID: 3029462911413478383}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94584848daf88d049b61b5015853ddbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

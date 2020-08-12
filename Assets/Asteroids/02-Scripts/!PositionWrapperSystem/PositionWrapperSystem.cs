@@ -26,7 +26,9 @@
             minWorldPos = mainCamera.ViewportToWorldPoint(_asteroidGameSettings.minWrapViewportPosition);
             maxWorldPos = mainCamera.ViewportToWorldPoint(_asteroidGameSettings.maxWrapViewportPosition);
 
-            RegisterPlayerTransform();
+            _gameSignals.PlayerSpawnedSignal.Listen(HandlePlayerSpawned).AddTo(disposables);
+            _gameSignals.PlayerDespawnedSignal.Listen(HandlePlayerDespawned, PlayerDespawnedPrioritySignal.Priority.REMOVE_FROM_POSITION_WRAPPER).AddTo(disposables);
+
             _gameSignals.BulletSpawnedSignal.Listen(HandleBulletSpawned).AddTo(disposables);
             _gameSignals.BulletDespawnedSignal.Listen(HandleBulletDespawned).AddTo(disposables);
 
@@ -34,13 +36,6 @@
             _gameSignals.AsteroidDespawnedSignal.Listen(HandleAsteroidDespawned).AddTo(disposables);
 
             return UniTask.CompletedTask;
-        }
-
-        // HACK: To be replaced with on player spawned
-        private void RegisterPlayerTransform()
-        {
-            Transform player = GameObject.FindGameObjectWithTag("Player").transform;
-            RegisterTransform(player);
         }
 
         public void Tick()
@@ -63,6 +58,17 @@
         public void Dispose()
         {
             disposables.Clear();
+        }
+
+        private void HandlePlayerSpawned(PlayerRocketController playerRocketController)
+        {
+            RegisterTransform(playerRocketController.transform);
+        }
+
+        private bool HandlePlayerDespawned(PlayerRocketController playerRocketController)
+        {
+            RemoveTransform(playerRocketController.transform);
+            return true;
         }
 
         private void HandleBulletSpawned(BulletComponent bulletComponent)

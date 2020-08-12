@@ -56,7 +56,7 @@
                 else
                 {
                     timer = 0f;
-                    SpawnAsteroid();
+                    SpawnAsteroid(_asteroidGameSettings.asteroidPrefab.gameObject);
                 }
             }
         }
@@ -67,7 +67,7 @@
             DespawnAsteroid(go.GetComponent<AsteroidComponent>());
         }
 
-        private async void SpawnAsteroid()
+        private async void SpawnAsteroid(GameObject prefab)
         {
             bool isMinHorizontal = Random.Range(0, 2) == 0;
             bool isMinVertical = Random.Range(0, 2) == 0;
@@ -87,7 +87,7 @@
             if (isMinVertical) spawnPos.y -= additionalPos.y;
             else spawnPos.y += additionalPos.y;
 
-            GameObject asteroidGO = await _multiplePrefabMemoryPool.SpawnObject(_asteroidGameSettings.asteroidPrefab.gameObject, spawnPos);
+            GameObject asteroidGO = await _multiplePrefabMemoryPool.SpawnObject(prefab, spawnPos);
             var asteroid = asteroidGO.GetComponent<AsteroidComponent>();
 
             float speed = Random.Range(1f, 10f);

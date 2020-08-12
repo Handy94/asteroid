@@ -14,6 +14,10 @@
         public AsteroidComponent asteroidPrefab;
         public float asteroidSpawnTime = 1f;
         public int maxAsteroidCount = 5;
+
+        [Header("Player")]
+        public PlayerRocketController playerPrefab;
+        public float respawnDelayInSeconds = 3;
     }
 
 }

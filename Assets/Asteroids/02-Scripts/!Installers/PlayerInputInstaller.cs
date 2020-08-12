@@ -2,11 +2,8 @@
 {
     using HandyPackage;
 
-    public class PlayerInputInstaller : MonoInstaller
+    public class PlayerInputInstaller : Installer<PlayerInputInstaller>
     {
-        public RocketMovement rocketMovement;
-        public PlayerWeapon playerWeapon;
-
         public override void InstallDependencies()
         {
             InstallMovementSystem();
@@ -15,12 +12,12 @@
 
         private void InstallMovementSystem()
         {
-            Container.Install(new PlayerMovementInputSystem(rocketMovement));
+            Container.Install<PlayerMovementInputSystem>();
         }
 
         private void InstallWeaponSystem()
         {
-            Container.Install(new PlayerShootInputSystem(playerWeapon));
+            Container.Install<PlayerShootInputSystem>();
         }
     }
 }
