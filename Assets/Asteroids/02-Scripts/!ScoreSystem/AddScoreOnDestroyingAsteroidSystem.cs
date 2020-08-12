@@ -30,7 +30,6 @@
 
         private void HandleAsteroidDespawned(AsteroidComponent asteroid, GameEntityTag gameEntityTag)
         {
-            UnityEngine.Debug.Log(gameEntityTag);
             if (gameEntityTag != GameEntityTag.BULLET) return;
             _scoreSystem.AddScore(_asteroidGameSettings.scorePerAsteroid);
         }

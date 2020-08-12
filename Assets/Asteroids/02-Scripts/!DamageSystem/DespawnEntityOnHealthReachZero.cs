@@ -33,9 +33,9 @@ namespace Asteroid
             disposables.Clear();
         }
 
-        private void OnHealthChanged(int health)
+        private void OnHealthChanged(int health, GameEntityTag damagerEntityTag)
         {
-            _gameSignals.GameEntityDespawnedSignal.Fire(gameObject, gameEntityTagComponent.GameEntityTag, GameEntityTag.BULLET);
+            _gameSignals.GameEntityDespawnedSignal.Fire(gameObject, gameEntityTagComponent.GameEntityTag, damagerEntityTag);
         }
     }
 

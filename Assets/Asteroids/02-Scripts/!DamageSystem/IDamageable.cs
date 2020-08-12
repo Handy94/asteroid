@@ -1,8 +1,8 @@
 ﻿namespace Asteroid
 {
-    public interface IDamageable
+    public interface IDamageable<TDamagerSource>
     {
-        void Damage(int damage);
+        void Damage(int damage, TDamagerSource damagerSource);
     }
 
 }
