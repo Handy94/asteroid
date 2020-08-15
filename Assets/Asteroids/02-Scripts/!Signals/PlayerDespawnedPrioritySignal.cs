@@ -2,7 +2,7 @@
 {
     using HandyPackage;
 
-    public class PlayerDespawnedPrioritySignal : PrioritySignal<PlayerRocketController>
+    public class PlayerDespawnedPrioritySignal : PrioritySignal<PlayerShipController>
     {
         public static class Priority
         {

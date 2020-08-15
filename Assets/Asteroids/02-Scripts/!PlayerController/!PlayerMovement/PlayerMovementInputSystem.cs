@@ -12,7 +12,7 @@ namespace Asteroid
 
         private GameSignals _gameSignals;
 
-        private RocketMovement _rocketMovement;
+        private ShipMovement _shipMovement;
         private bool _canInput;
         private CompositeDisposable disposables = new CompositeDisposable();
         private CompositeDisposable inputDisposables = new CompositeDisposable();
@@ -33,16 +33,16 @@ namespace Asteroid
             disposables.Clear();
         }
 
-        private void HandlePlayerSpawned(PlayerRocketController playerRocketController)
+        private void HandlePlayerSpawned(PlayerShipController playerShipController)
         {
-            _rocketMovement = playerRocketController.RocketMovement;
+            _shipMovement = playerShipController.ShipMovement;
             ListenForPlayerInput();
         }
 
-        private bool HandlePlayerDespawned(PlayerRocketController playerRocketController)
+        private bool HandlePlayerDespawned(PlayerShipController playerShipController)
         {
             UnlistenForPlayerInput();
-            _rocketMovement = null;
+            _shipMovement = null;
             return true;
         }
 
@@ -64,8 +64,8 @@ namespace Asteroid
             float vAxis = Mathf.Clamp(Input.GetAxisRaw(INPUT_AXIS_VERTICAL), 0, 1);
             float hAxis = Input.GetAxisRaw(INPUT_AXIS_HORIZONTAL);
 
-            _rocketMovement?.MoveRocket(vAxis);
-            _rocketMovement?.RotateRocket(-hAxis);
+            _shipMovement?.MoveShip(vAxis);
+            _shipMovement?.RotateShip(-hAxis);
         }
     }
 }

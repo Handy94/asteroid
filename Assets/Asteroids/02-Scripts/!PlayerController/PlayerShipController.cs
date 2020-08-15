@@ -2,9 +2,9 @@
 {
     using UnityEngine;
 
-    public class PlayerRocketController : MonoBehaviour
+    public class PlayerShipController : MonoBehaviour
     {
-        public RocketMovement RocketMovement;
+        public ShipMovement ShipMovement;
         public PlayerWeapon PlayerWeapon;
     }
 

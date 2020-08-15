@@ -2,7 +2,7 @@
 {
     using UnityEngine;
 
-    public class RocketMovement : MonoBehaviour
+    public class ShipMovement : MonoBehaviour
     {
         public Rigidbody2D rb;
         public float thrustPower = 100;
@@ -32,12 +32,12 @@
             rb.AddTorque(_hInput * turnThrustPower * Time.deltaTime);
         }
 
-        public void MoveRocket(float vAxis)
+        public void MoveShip(float vAxis)
         {
             _vInput = vAxis;
         }
 
-        public void RotateRocket(float hAxis)
+        public void RotateShip(float hAxis)
         {
             _hInput = hAxis;
         }

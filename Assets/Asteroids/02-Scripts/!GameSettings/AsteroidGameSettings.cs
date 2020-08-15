@@ -15,7 +15,7 @@
         public int maxAsteroidCount = 5;
 
         [Header("Player")]
-        public PlayerRocketController playerPrefab;
+        public PlayerShipController playerPrefab;
         public float respawnDelayInSeconds = 3;
 
         [Header("Score")]

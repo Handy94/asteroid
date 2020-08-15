@@ -30,7 +30,7 @@
             disposables.Clear();
         }
 
-        private bool HandlePlayerDespawned(PlayerRocketController player)
+        private bool HandlePlayerDespawned(PlayerShipController player)
         {
             if (_bookKeepingInGameData.PlayerLife.Value > 0)
             {

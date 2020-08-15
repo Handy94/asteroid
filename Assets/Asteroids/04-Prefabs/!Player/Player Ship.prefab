@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 5633290577129456283}
   - component: {fileID: 5507821440098153229}
   m_Layer: 8
-  m_Name: Player Rocket
+  m_Name: Player Ship
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fd6f992c69eb24b85daabd692074f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RocketMovement: {fileID: 7435538152357355289}
+  ShipMovement: {fileID: 7435538152357355289}
   PlayerWeapon: {fileID: 7235959864630910039}
 --- !u!114 &7435538152357355289
 MonoBehaviour:
