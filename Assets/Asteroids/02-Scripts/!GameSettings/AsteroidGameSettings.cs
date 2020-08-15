@@ -11,7 +11,6 @@
         [Header("Asteroid")]
         public Vector2 minAsteroidSpawnAdditionalViewportPosition = new Vector2(0.05f, 0.05f);
         public Vector2 maxAsteroidSpawnAdditionalViewportPosition = new Vector2(0.1f, 0.1f);
-        public AsteroidComponent asteroidPrefab;
         public float asteroidSpawnTime = 1f;
         public int maxAsteroidCount = 5;
 

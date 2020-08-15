@@ -451,6 +451,7 @@ MonoBehaviour:
   - {fileID: 12884097}
   scriptableObjectInstallers:
   - {fileID: 11400000, guid: 30fdcdb2ebb49004e940159e310792a6, type: 2}
+  - {fileID: 11400000, guid: c30c3644bc5cf554ca78f47fbdc208b8, type: 2}
   initOnAwake: 1
 --- !u!4 &1855920525
 Transform:

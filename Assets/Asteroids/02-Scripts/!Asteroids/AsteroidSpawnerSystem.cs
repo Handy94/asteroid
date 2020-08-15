@@ -9,6 +9,7 @@
     {
         private MultiplePrefabMemoryPool _multiplePrefabMemoryPool;
         private AsteroidGameSettings _asteroidGameSettings;
+        private AsteroidAssetSource _asteroidAssetSource;
         private GameSignals _gameSignals;
 
         private CompositeDisposable disposables = new CompositeDisposable();
@@ -24,6 +25,7 @@
         {
             _multiplePrefabMemoryPool = DIResolver.GetObject<MultiplePrefabMemoryPool>();
             _asteroidGameSettings = DIResolver.GetObject<AsteroidGameSettings>();
+            _asteroidAssetSource = DIResolver.GetObject<AsteroidAssetSource>();
             _gameSignals = DIResolver.GetObject<GameSignals>();
 
             Camera mainCamera = Camera.main;
@@ -56,9 +58,21 @@
                 else
                 {
                     timer = 0f;
-                    SpawnAsteroid(_asteroidGameSettings.asteroidPrefab.gameObject);
+                    SpawnAsteroidAtOutOfScreenPosition(GetRandomAsteroidData());
                 }
             }
+        }
+
+        private AsteroidData GetRandomAsteroidData()
+        {
+            int randomIndex = Random.Range(0, _asteroidAssetSource.asteroidSpawnVariants.Count);
+            return _asteroidAssetSource.asteroidSpawnVariants[randomIndex];
+        }
+
+        public AsteroidComponent GetRandomAsteroidPrefab(AsteroidData asteroidData)
+        {
+            int randomIndex = Random.Range(0, asteroidData.prefabVariants.Length);
+            return asteroidData.prefabVariants[randomIndex];
         }
 
         private void HandleGameEntityDespawned(GameObject go, GameEntityTag gameEntityTag, GameEntityTag despawner)
@@ -67,7 +81,7 @@
             DespawnAsteroid(go.GetComponent<AsteroidComponent>(), despawner);
         }
 
-        private async void SpawnAsteroid(GameObject prefab)
+        private async UniTask SpawnAsteroidAtOutOfScreenPosition(AsteroidData asteroidData)
         {
             bool isMinHorizontal = Random.Range(0, 2) == 0;
             bool isMinVertical = Random.Range(0, 2) == 0;
@@ -87,15 +101,20 @@
             if (isMinVertical) spawnPos.y -= additionalPos.y;
             else spawnPos.y += additionalPos.y;
 
-            GameObject asteroidGO = await _multiplePrefabMemoryPool.SpawnObject(prefab, spawnPos);
-            var asteroid = asteroidGO.GetComponent<AsteroidComponent>();
-
             float speed = Random.Range(1f, 10f);
             Vector2 moveDirection = new Vector2(Random.Range(0f, 1f), Random.Range(0f, 1f));
             if (!isMinHorizontal) moveDirection.x *= -1;
             if (!isMinVertical) moveDirection.y *= -1;
 
-            asteroid.Init(moveDirection, speed);
+            await SpawnAsteroid(asteroidData, moveDirection, spawnPos);
+        }
+
+        public async UniTask SpawnAsteroid(AsteroidData asteroidData, Vector2 moveDirection, Vector2 spawnPos)
+        {
+            GameObject asteroidGO = await _multiplePrefabMemoryPool.SpawnObject(GetRandomAsteroidPrefab(asteroidData).gameObject, spawnPos);
+            var asteroid = asteroidGO.GetComponent<AsteroidComponent>();
+
+            asteroid.Init(moveDirection, asteroidData);
             _gameSignals.AsteroidSpawnedSignal.Fire(asteroid);
 
             currentSpawned++;

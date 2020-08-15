@@ -46,6 +46,7 @@
         private void InstallAsteroidSystem()
         {
             Container.Install<AsteroidSpawnerSystem>();
+            Container.Install<AsteroidSplitSystem>();
         }
 
         private void InstallGameSystem()

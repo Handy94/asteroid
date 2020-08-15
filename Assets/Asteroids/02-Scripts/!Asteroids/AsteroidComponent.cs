@@ -6,6 +6,8 @@
     {
         [SerializeField] private Rigidbody2D rb;
 
+        public AsteroidData AsteroidData { get; private set; }
+
         private Vector2 _moveDirection;
         private float _moveSpeed;
         private Vector2 _currentVelocity;
@@ -20,10 +22,11 @@
             rb.velocity = _currentVelocity;
         }
 
-        public void Init(Vector2 dir, float moveSpeed)
+        public void Init(Vector2 dir, AsteroidData asteroidData)
         {
+            this.AsteroidData = asteroidData;
             _moveDirection = dir;
-            _moveSpeed = moveSpeed;
+            _moveSpeed = Random.Range(asteroidData.minSpeed, asteroidData.maxSpeed);
 
             _currentVelocity = _moveDirection * _moveSpeed;
         }
