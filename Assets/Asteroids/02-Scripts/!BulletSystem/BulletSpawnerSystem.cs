@@ -27,22 +27,27 @@
             disposables.Clear();
         }
 
-        private void HandlePlayerShoot(GameObject prefab, Transform[] spawnPoint)
+        private async void HandlePlayerShoot(GameObject prefab, Transform[] spawnPoints)
         {
-            if (prefab == null) return;
-            int spawnPointCount = spawnPoint.Length;
-
-            for (int i = 0; i < spawnPointCount; i++)
-            {
-                if (spawnPoint[i] == null) continue;
-                SpawnBullet(prefab, spawnPoint[i]);
-            }
+            await SpawnBullet(prefab, spawnPoints);
         }
 
         private void HandleGameEntityDespawned(GameObject go, GameEntityTag gameEntityTag, GameEntityTag despawner)
         {
             if (gameEntityTag != GameEntityTag.BULLET) return;
             DespawnBullet(go.GetComponent<BulletComponent>());
+        }
+
+        private async UniTask SpawnBullet(GameObject prefab, Transform[] spawnPoints)
+        {
+            if (prefab == null) return;
+            int spawnPointCount = spawnPoints.Length;
+
+            for (int i = 0; i < spawnPointCount; i++)
+            {
+                if (spawnPoints[i] == null) continue;
+                await SpawnBullet(prefab, spawnPoints[i]);
+            }
         }
 
         private async UniTask SpawnBullet(GameObject prefab, Transform spawnPoint)

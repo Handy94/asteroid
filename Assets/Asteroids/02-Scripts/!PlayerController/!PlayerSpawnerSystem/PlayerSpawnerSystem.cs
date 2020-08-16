@@ -19,9 +19,8 @@
             _gameSignals = DIResolver.GetObject<GameSignals>();
             _asteroidGameSettings = DIResolver.GetObject<AsteroidGameSettings>();
 
+            _gameSignals.GameStartSignal.Listen(HandleGameStart, GameStartPrioritySignal.PRIORITY_SPAWN_PLAYER).AddToDisposables(disposables);
             _gameSignals.GameEntityDespawnedSignal.Listen(HandleGameEntityDespawned).AddToDisposables(disposables);
-
-            await SpawnPlayer(_asteroidGameSettings.playerPrefab);
 
             await UniTask.CompletedTask;
         }
@@ -29,6 +28,12 @@
         public void Dispose()
         {
             disposables.Clear();
+        }
+
+        private bool HandleGameStart()
+        {
+            SpawnPlayer(_asteroidGameSettings.playerPrefab);
+            return true;
         }
 
         private void HandleGameEntityDespawned(GameObject go, GameEntityTag gameEntityTag, GameEntityTag despawner)

@@ -36,6 +36,10 @@
             {
                 RespawnPlayerWithDelay(_asteroidGameSettings.respawnDelayInSeconds);
             }
+            else
+            {
+                _gameSignals.GameOverSignal.Fire();
+            }
             return true;
         }
 

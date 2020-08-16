@@ -21,10 +21,9 @@
             _asteroidAssetSource = DIResolver.GetObject<AsteroidAssetSource>();
             _bookKeepingInGameData = DIResolver.GetObject<BookKeepingInGameData>();
 
+            _gameSignals.GameStartSignal.Listen(HandleGameStartSignal, GameStartPrioritySignal.PRIORITY_SPAWN_WAVE).AddTo(disposables);
             _gameSignals.AsteroidSpawnedSignal.Listen(HandleAsteroidSpawned).AddTo(disposables);
             _gameSignals.AsteroidDespawnedSignal.Listen(HandleAsteroidDespawned).AddTo(disposables);
-
-            SpawnNextWave();
 
             return UniTask.CompletedTask;
         }
@@ -32,6 +31,13 @@
         public void Dispose()
         {
             disposables.Clear();
+        }
+
+        private bool HandleGameStartSignal()
+        {
+            _asteroidSpawnerSystem.DespawnAllAsteroid();
+            SpawnWave();
+            return true;
         }
 
         private void HandleAsteroidSpawned(AsteroidComponent asteroidComponent)
@@ -49,11 +55,11 @@
             if (_bookKeepingInGameData.AsteroidCount.Value == 0)
             {
                 _bookKeepingInGameData.CurrentStage.Value++;
-                SpawnNextWave();
+                SpawnWave();
             }
         }
 
-        private void SpawnNextWave()
+        private void SpawnWave()
         {
             _bookKeepingInGameData.AsteroidCount.Value = 0;
 

@@ -1,6 +1,7 @@
 ﻿namespace Asteroid
 {
     using HandyPackage;
+    using System.Collections.Generic;
     using UniRx;
     using UniRx.Async;
     using UnityEngine;
@@ -11,6 +12,8 @@
         private AsteroidGameSettings _asteroidGameSettings;
         private AsteroidAssetSource _asteroidAssetSource;
         private GameSignals _gameSignals;
+
+        private List<AsteroidComponent> _spawnedAsteroids = new List<AsteroidComponent>();
 
         private CompositeDisposable disposables = new CompositeDisposable();
         private Vector2 minAdditionalWorldPos;
@@ -94,8 +97,10 @@
         {
             GameObject asteroidGO = await _multiplePrefabMemoryPool.SpawnObject(GetRandomAsteroidPrefab(asteroidData).gameObject, spawnPos);
             var asteroid = asteroidGO.GetComponent<AsteroidComponent>();
-
             asteroid.Init(moveDirection, asteroidData);
+
+            _spawnedAsteroids.Add(asteroid);
+
             _gameSignals.AsteroidSpawnedSignal.Fire(asteroid);
         }
 
@@ -103,6 +108,15 @@
         {
             _gameSignals.AsteroidDespawnedSignal.Fire(asteroidComponent, despawner);
             _multiplePrefabMemoryPool.DespawnObject(asteroidComponent.gameObject);
+        }
+
+        public void DespawnAllAsteroid()
+        {
+            int count = _spawnedAsteroids.Count;
+            for (int i = 0; i < count; i++)
+            {
+                _multiplePrefabMemoryPool.DespawnObject(_spawnedAsteroids[i].gameObject);
+            }
         }
     }
 

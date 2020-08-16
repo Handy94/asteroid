@@ -17,6 +17,9 @@
 
         public EventSignal<PlayerShipController> PlayerSpawnedSignal = new EventSignal<PlayerShipController>();
         public PlayerDespawnedPrioritySignal PlayerDespawnedSignal = new PlayerDespawnedPrioritySignal();
+
+        public GameStartPrioritySignal GameStartSignal = new GameStartPrioritySignal();
+        public EventSignal GameOverSignal = new EventSignal();
     }
 
 }

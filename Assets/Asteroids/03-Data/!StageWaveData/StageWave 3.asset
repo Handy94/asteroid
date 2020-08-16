@@ -17,5 +17,5 @@ MonoBehaviour:
     minSpawnCount: 2
     maxSpawnCount: 3
   - asteroidID: Asteroid-Big
-    minSpawnCount: 1
-    maxSpawnCount: 2
+    minSpawnCount: 3
+    maxSpawnCount: 4

@@ -16,6 +16,6 @@ MonoBehaviour:
   - asteroidID: Asteroid-Medium
     minSpawnCount: 4
     maxSpawnCount: 5
-  - asteroidID: Asteroid-Small
+  - asteroidID: Asteroid-Big
     minSpawnCount: 1
     maxSpawnCount: 2

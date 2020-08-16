@@ -28,7 +28,12 @@
             disposables.Clear();
         }
 
-        private void HandleAsteroidDespawned(AsteroidComponent asteroid, GameEntityTag despawner)
+        private async void HandleAsteroidDespawned(AsteroidComponent asteroid, GameEntityTag despawner)
+        {
+            await TryToSpawnAsteroidSplit(asteroid);
+        }
+
+        private async UniTask TryToSpawnAsteroidSplit(AsteroidComponent asteroid)
         {
             var splitData = _asteroidAssetSource.GetAsteroidSplitData(asteroid.AsteroidData.AsteroidID);
             if (splitData != null)
@@ -47,7 +52,7 @@
                     {
                         float randomRotate = Random.Range(360 * j / spawnCount, 360 * (j + 1) / spawnCount);
                         Vector2 moveDirection = (Quaternion.Euler(0, 0, randomRotate) * baseDirection);
-                        _asteroidSpawnerSystem.SpawnAsteroid(asteroidData, moveDirection, spawnPos);
+                        await _asteroidSpawnerSystem.SpawnAsteroid(asteroidData, moveDirection, spawnPos);
                     }
                 }
             }

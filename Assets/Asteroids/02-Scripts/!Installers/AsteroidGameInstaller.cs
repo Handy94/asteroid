@@ -18,6 +18,8 @@
 
             InstallStageWaveSystem();
             InstallScoreSystem();
+
+            Container.Install<GameStarterSystem>();
         }
 
         private void InstallFrameworkSystems()
