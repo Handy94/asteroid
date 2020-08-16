@@ -9,6 +9,11 @@ namespace Asteroid
 
         public EventSignal<int, GameEntityTag> OnHealthChanged { get; private set; } = new EventSignal<int, GameEntityTag>();
 
+        public void SetHealth(int health)
+        {
+            Health = health;
+        }
+
         public void Damage(int damage, GameEntityTag damager)
         {
             Health -= damage;

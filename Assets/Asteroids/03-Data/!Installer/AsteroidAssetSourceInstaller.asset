@@ -21,3 +21,7 @@ MonoBehaviour:
     asteroidSplitDataList:
     - {fileID: 11400000, guid: 5decd3843efc74940902016bf6348bec, type: 2}
     - {fileID: 11400000, guid: c111b3adf9c7f7b478eb6987796484b4, type: 2}
+    stageWaveDataList:
+    - {fileID: 11400000, guid: 2a927432acbc663448580395834b00e2, type: 2}
+    - {fileID: 11400000, guid: e4a98f9ee1479774a8a1168018fbc7cd, type: 2}
+    - {fileID: 11400000, guid: 077699a0f1e03d249a0996752c196e3a, type: 2}

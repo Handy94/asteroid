@@ -7,6 +7,7 @@ namespace Asteroid
     {
         public List<AsteroidData> asteroidSpawnVariants;
         public List<AsteroidSplitData> asteroidSplitDataList;
+        public List<StageWaveData> stageWaveDataList;
 
         public AsteroidData GetAsteroidData(string asteroidID)
         {
@@ -16,6 +17,14 @@ namespace Asteroid
         public AsteroidSplitData GetAsteroidSplitData(string asteroidID)
         {
             return asteroidSplitDataList.Find(x => x.asteroidIDSource.Equals(asteroidID));
+        }
+
+        public StageWaveData GetStageWaveData(int stage)
+        {
+            if (stage < 1) throw new System.ArgumentException("Stage must be greater than 0");
+            if (stage > stageWaveDataList.Count) stage = stageWaveDataList.Count;
+
+            return stageWaveDataList[stage - 1];
         }
     }
 

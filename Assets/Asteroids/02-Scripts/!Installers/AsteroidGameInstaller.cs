@@ -9,14 +9,14 @@
             InstallFrameworkSystems();
 
             InstallMainDependencies();
+            InstallGameSystem();
 
             InstallPlayerSystem();
 
             InstallBulletSystem();
             InstallAsteroidSystem();
 
-            InstallGameSystem();
-
+            InstallStageWaveSystem();
             InstallScoreSystem();
         }
 
@@ -60,6 +60,11 @@
         {
             Container.Install<ScoreSystem>();
             Container.Install<AddScoreOnDestroyingAsteroidSystem>();
+        }
+
+        private void InstallStageWaveSystem()
+        {
+            Container.Install<StageWaveSystem>();
         }
     }
 }

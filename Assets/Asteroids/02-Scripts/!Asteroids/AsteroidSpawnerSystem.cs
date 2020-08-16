@@ -5,7 +5,7 @@
     using UniRx.Async;
     using UnityEngine;
 
-    public class AsteroidSpawnerSystem : IInitializable, ITickable, System.IDisposable
+    public class AsteroidSpawnerSystem : IInitializable, System.IDisposable
     {
         private MultiplePrefabMemoryPool _multiplePrefabMemoryPool;
         private AsteroidGameSettings _asteroidGameSettings;
@@ -17,9 +17,6 @@
         private Vector2 maxAdditionalWorldPos;
         private Vector2 minWorldPos;
         private Vector2 maxWorldPos;
-
-        private float timer = 0f;
-        private int currentSpawned = 0;
 
         public UniTask Initialize()
         {
@@ -47,22 +44,6 @@
             disposables.Clear();
         }
 
-        public void Tick()
-        {
-            if (currentSpawned < _asteroidGameSettings.maxAsteroidCount)
-            {
-                if (timer < _asteroidGameSettings.asteroidSpawnTime)
-                {
-                    timer += Time.deltaTime;
-                }
-                else
-                {
-                    timer = 0f;
-                    SpawnAsteroidAtOutOfScreenPosition(GetRandomAsteroidData());
-                }
-            }
-        }
-
         private AsteroidData GetRandomAsteroidData()
         {
             int randomIndex = Random.Range(0, _asteroidAssetSource.asteroidSpawnVariants.Count);
@@ -81,7 +62,7 @@
             DespawnAsteroid(go.GetComponent<AsteroidComponent>(), despawner);
         }
 
-        private async UniTask SpawnAsteroidAtOutOfScreenPosition(AsteroidData asteroidData)
+        public async UniTask SpawnAsteroidAtOutOfScreenPosition(AsteroidData asteroidData)
         {
             bool isMinHorizontal = Random.Range(0, 2) == 0;
             bool isMinVertical = Random.Range(0, 2) == 0;
@@ -116,15 +97,12 @@
 
             asteroid.Init(moveDirection, asteroidData);
             _gameSignals.AsteroidSpawnedSignal.Fire(asteroid);
-
-            currentSpawned++;
         }
 
         private void DespawnAsteroid(AsteroidComponent asteroidComponent, GameEntityTag despawner)
         {
             _gameSignals.AsteroidDespawnedSignal.Fire(asteroidComponent, despawner);
             _multiplePrefabMemoryPool.DespawnObject(asteroidComponent.gameObject);
-            currentSpawned--;
         }
     }
 
