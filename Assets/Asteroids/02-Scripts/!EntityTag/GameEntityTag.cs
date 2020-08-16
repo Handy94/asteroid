@@ -7,7 +7,7 @@
         ASTEROID = 2,
         ENEMY = 3,
 
-        UKNOWN = 9999,
+        UNKNOWN = 9999,
     }
 
 }

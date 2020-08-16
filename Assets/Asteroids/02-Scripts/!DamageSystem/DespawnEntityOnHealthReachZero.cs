@@ -6,7 +6,7 @@ namespace Asteroid
     public class DespawnEntityOnHealthReachZero : MonoBehaviour
     {
         [SerializeField] private GameEntityTagComponent gameEntityTagComponent;
-        [SerializeField] private HealthComponent healthComponent;
+        [SerializeField] private EntityHealthComponent healthComponent;
 
         private DisposableCollection disposables = new DisposableCollection();
 
@@ -15,7 +15,7 @@ namespace Asteroid
         private void Reset()
         {
             if (gameEntityTagComponent == null) gameEntityTagComponent = GetComponent<GameEntityTagComponent>();
-            if (healthComponent == null) healthComponent = GetComponent<HealthComponent>();
+            if (healthComponent == null) healthComponent = GetComponent<EntityHealthComponent>();
         }
 
         private void Awake()
