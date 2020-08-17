@@ -9,6 +9,7 @@
         private GameSignals _gameSignals;
         private ScoreSystem _scoreSystem;
         private AsteroidGameSettings _asteroidGameSettings;
+        private IScoreDataSource<string> _asteroidScoreDataSource;
 
         private CompositeDisposable disposables = new CompositeDisposable();
         private bool _canAddScore = false;
@@ -18,6 +19,7 @@
             _gameSignals = DIResolver.GetObject<GameSignals>();
             _scoreSystem = DIResolver.GetObject<ScoreSystem>();
             _asteroidGameSettings = DIResolver.GetObject<AsteroidGameSettings>();
+            _asteroidScoreDataSource = DIResolver.GetObject<AsteroidScoreDataSourceScriptableObject>();
 
             _gameSignals.GameStartSignal.Listen(HandleGameStart, GameStartPrioritySignal.PRIORITY_SETUP_ADD_SCORE_SYSTEM).AddTo(disposables);
             _gameSignals.GameOverSignal.Listen(HandleGameOver).AddTo(disposables);
@@ -46,7 +48,9 @@
         {
             if (gameEntityTag != GameEntityTag.BULLET) return;
             if (!_canAddScore) return;
-            _scoreSystem.AddScore(_asteroidGameSettings.scorePerAsteroid);
+
+            int score = _asteroidScoreDataSource.GetScore(asteroid.AsteroidData.AsteroidID);
+            _scoreSystem.AddScore(score);
         }
     }
 

@@ -1,4 +1,5 @@
-﻿#if UNITY_EDITOR
+﻿using UnityEngine;
+#if UNITY_EDITOR
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Linq;
@@ -13,9 +14,13 @@ namespace Asteroid
 #if UNITY_EDITOR
         [ValueDropdown("GetAllAsteroidID")]
 #endif
-        public string asteroidID;
-        public int minCount;
-        public int maxCount;
+        [SerializeField] private string asteroidID;
+        [SerializeField] private int minCount;
+        [SerializeField] private int maxCount;
+
+        public string AsteroidID => asteroidID;
+        public int MinCount => minCount;
+        public int MaxCount => maxCount;
 
 #if UNITY_EDITOR
         private IEnumerable GetAllAsteroidID()

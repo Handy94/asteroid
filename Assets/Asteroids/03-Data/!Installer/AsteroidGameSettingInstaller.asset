@@ -25,3 +25,5 @@ MonoBehaviour:
       type: 3}
     respawnDelayInSeconds: 3
     scorePerAsteroid: 10
+  AsteroidScoreDataSource: {fileID: 11400000, guid: 536200d33eb24a34aa502aaee1a45153,
+    type: 2}

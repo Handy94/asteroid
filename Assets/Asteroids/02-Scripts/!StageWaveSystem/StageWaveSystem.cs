@@ -67,11 +67,11 @@
             if (currentStageWave == null)
                 throw new System.NullReferenceException($"Stage Wave Data null on stage {_bookKeepingInGameData.CurrentStage.Value}");
 
-            int asteroidTypeCount = currentStageWave.spawnAsteroidDataList.Count;
+            int asteroidTypeCount = currentStageWave.SpawnAsteroidDataList.Count;
             for (int i = 0; i < asteroidTypeCount; i++)
             {
-                int spawnCount = Random.Range(currentStageWave.spawnAsteroidDataList[i].minSpawnCount, currentStageWave.spawnAsteroidDataList[i].maxSpawnCount + 1);
-                AsteroidData asteroidData = _asteroidAssetSource.GetAsteroidData(currentStageWave.spawnAsteroidDataList[i].asteroidID);
+                int spawnCount = Random.Range(currentStageWave.SpawnAsteroidDataList[i].MinSpawnCount, currentStageWave.SpawnAsteroidDataList[i].MaxSpawnCount + 1);
+                AsteroidData asteroidData = _asteroidAssetSource.GetAsteroidData(currentStageWave.SpawnAsteroidDataList[i].AsteroidID);
                 for (int j = 0; j < spawnCount; j++)
                 {
                     _asteroidSpawnerSystem.SpawnAsteroidAtOutOfScreenPosition(asteroidData);

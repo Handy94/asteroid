@@ -6,7 +6,9 @@ namespace Asteroid
     [CreateAssetMenu(menuName = "@Asteroid/Stage Wave Data", fileName = "New StageWaveData")]
     public class StageWaveData : ScriptableObject
     {
-        public List<StageAsteroidData> spawnAsteroidDataList;
+        [SerializeField] private List<StageAsteroidData> spawnAsteroidDataList;
+
+        public List<StageAsteroidData> SpawnAsteroidDataList => spawnAsteroidDataList;
     }
 
 }

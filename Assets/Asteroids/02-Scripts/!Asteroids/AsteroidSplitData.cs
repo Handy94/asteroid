@@ -1,11 +1,10 @@
-﻿#if UNITY_EDITOR
+﻿using UnityEngine;
+#if UNITY_EDITOR
 using Sirenix.OdinInspector;
 using System.Collections;
 using System.Linq;
 using Asteroid.Editor;
 #endif
-
-using UnityEngine;
 
 namespace Asteroid
 {
@@ -15,8 +14,11 @@ namespace Asteroid
 #if UNITY_EDITOR
         [ValueDropdown("GetAllAsteroidID")]
 #endif
-        public string asteroidIDSource;
-        public AsteroidSplitCountData[] splitCountData;
+        [SerializeField] private string asteroidIDSource;
+        [SerializeField] private AsteroidSplitCountData[] splitCountData;
+
+        public string AsteroidIDSource => asteroidIDSource;
+        public AsteroidSplitCountData[] SplitCountData => splitCountData;
 
 #if UNITY_EDITOR
         private IEnumerable GetAllAsteroidID()

@@ -25,3 +25,5 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 2a927432acbc663448580395834b00e2, type: 2}
     - {fileID: 11400000, guid: e4a98f9ee1479774a8a1168018fbc7cd, type: 2}
     - {fileID: 11400000, guid: 077699a0f1e03d249a0996752c196e3a, type: 2}
+  AsteroidScoreDataSource: {fileID: 11400000, guid: 536200d33eb24a34aa502aaee1a45153,
+    type: 2}

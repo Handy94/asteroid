@@ -9,18 +9,17 @@ using Asteroid.Editor;
 namespace Asteroid
 {
     [System.Serializable]
-    public struct StageAsteroidData
+    public struct AsteroidScoreData
     {
 #if UNITY_EDITOR
         [ValueDropdown("GetAllAsteroidID")]
 #endif
-        [SerializeField] private string asteroidID;
-        [SerializeField] private int minSpawnCount;
-        [SerializeField] private int maxSpawnCount;
+        [SerializeField]
+        private string asteroidID;
+        [SerializeField] private int score;
 
         public string AsteroidID => asteroidID;
-        public int MinSpawnCount => minSpawnCount;
-        public int MaxSpawnCount => maxSpawnCount;
+        public int Score => score;
 
 #if UNITY_EDITOR
         private IEnumerable GetAllAsteroidID()

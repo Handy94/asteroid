@@ -16,7 +16,7 @@ namespace Asteroid
 
         public AsteroidSplitData GetAsteroidSplitData(string asteroidID)
         {
-            return asteroidSplitDataList.Find(x => x.asteroidIDSource.Equals(asteroidID));
+            return asteroidSplitDataList.Find(x => x.AsteroidIDSource.Equals(asteroidID));
         }
 
         public StageWaveData GetStageWaveData(int stage)

@@ -40,11 +40,11 @@
             {
                 Vector2 spawnPos = asteroid.transform.position;
 
-                int count = splitData.splitCountData.Length;
+                int count = splitData.SplitCountData.Length;
                 for (int i = 0; i < count; i++)
                 {
-                    int spawnCount = Random.Range(splitData.splitCountData[i].minCount, splitData.splitCountData[i].maxCount + 1);
-                    var asteroidData = _asteroidAssetSource.GetAsteroidData(splitData.splitCountData[i].asteroidID);
+                    int spawnCount = Random.Range(splitData.SplitCountData[i].MinCount, splitData.SplitCountData[i].MaxCount + 1);
+                    var asteroidData = _asteroidAssetSource.GetAsteroidData(splitData.SplitCountData[i].AsteroidID);
 
                     Vector2 baseDirection = new Vector2(Random.Range(0.1f, 1f), Random.Range(0.1f, 1f));
 
