@@ -18,6 +18,7 @@
 
             InstallStageWaveSystem();
             InstallScoreSystem();
+            InstallHighScoreSystem();
         }
 
         private void InstallFrameworkSystems()
@@ -58,15 +59,20 @@
             Container.Install<GameOverSystem>();
         }
 
+        private void InstallStageWaveSystem()
+        {
+            Container.Install<StageWaveSystem>();
+        }
+
         private void InstallScoreSystem()
         {
             Container.Install<ScoreSystem>();
             Container.Install<AddScoreOnDestroyingAsteroidSystem>();
         }
 
-        private void InstallStageWaveSystem()
+        private void InstallHighScoreSystem()
         {
-            Container.Install<StageWaveSystem>();
+            Container.Install<InGameHighScoreManager>();
         }
     }
 }

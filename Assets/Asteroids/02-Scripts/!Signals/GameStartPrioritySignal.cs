@@ -6,6 +6,7 @@
     {
         public const int PRIORITY_SPAWN_PLAYER = 0;
         public const int PRIORITY_SPAWN_WAVE = 1;
+        public const int PRIORITY_SETUP_ADD_SCORE_SYSTEM = 2;
     }
 
 }

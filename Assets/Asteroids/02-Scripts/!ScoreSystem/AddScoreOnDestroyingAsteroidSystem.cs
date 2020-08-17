@@ -11,6 +11,7 @@
         private AsteroidGameSettings _asteroidGameSettings;
 
         private CompositeDisposable disposables = new CompositeDisposable();
+        private bool _canAddScore = false;
 
         public UniTask Initialize()
         {
@@ -18,6 +19,8 @@
             _scoreSystem = DIResolver.GetObject<ScoreSystem>();
             _asteroidGameSettings = DIResolver.GetObject<AsteroidGameSettings>();
 
+            _gameSignals.GameStartSignal.Listen(HandleGameStart, GameStartPrioritySignal.PRIORITY_SETUP_ADD_SCORE_SYSTEM).AddTo(disposables);
+            _gameSignals.GameOverSignal.Listen(HandleGameOver).AddTo(disposables);
             _gameSignals.AsteroidDespawnedSignal.Listen(HandleAsteroidDespawned).AddTo(disposables);
 
             return UniTask.CompletedTask;
@@ -28,9 +31,21 @@
             disposables.Clear();
         }
 
+        private bool HandleGameStart()
+        {
+            _canAddScore = true;
+            return true;
+        }
+
+        private void HandleGameOver()
+        {
+            _canAddScore = false;
+        }
+
         private void HandleAsteroidDespawned(AsteroidComponent asteroid, GameEntityTag gameEntityTag)
         {
             if (gameEntityTag != GameEntityTag.BULLET) return;
+            if (!_canAddScore) return;
             _scoreSystem.AddScore(_asteroidGameSettings.scorePerAsteroid);
         }
     }
