@@ -31,8 +31,6 @@
                 }).AddTo(tempDisposable);
             }).AddTo(disposables);
 
-            StartGame();
-
             return UniTask.CompletedTask;
         }
 

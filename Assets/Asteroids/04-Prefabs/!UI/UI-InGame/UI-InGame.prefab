@@ -49,6 +49,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 645117fcdc0b39048b6331949785f7b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InitialActiveState: 0
+  uiViewRoot:
+  - {fileID: 215262196285829035}
+  uiAnimator: []
   textPlayerLife: {fileID: 215262197330059668}
   textScore: {fileID: 215262195897147627}
   textHighScore: {fileID: 215262197227135858}
@@ -59,10 +63,60 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 215262196202111669}
     m_Modifications:
-    - target: {fileID: 5558914071534636506, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+    - target: {fileID: 5558914070431417317, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
         type: 3}
-      propertyPath: m_Name
-      value: UI-InGame-View
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914070431417317, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914070431417317, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914070596993283, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914070596993283, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914070596993283, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914070596993283, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914071001037989, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_HorizontalAlignment
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914071001037989, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914071001037989, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914071001037989, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 5558914071534636501, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
         type: 3}
@@ -169,8 +223,34 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5558914071534636506, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_Name
+      value: UI-InGame-View
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914071850697370, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914071850697370, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_textAlignment
+      value: 65535
+      objectReference: {fileID: 0}
+    - target: {fileID: 5558914071850697370, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+        type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8192cd9cb9c568049b38c63d2cc1e4fb, type: 3}
+--- !u!1 &215262196285829035 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5558914071534636506, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,
+    type: 3}
+  m_PrefabInstance: {fileID: 5753904013520265841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &215262196285829028 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5558914071534636501, guid: 8192cd9cb9c568049b38c63d2cc1e4fb,

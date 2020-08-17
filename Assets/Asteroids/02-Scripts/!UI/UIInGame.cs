@@ -1,11 +1,11 @@
 ﻿namespace Asteroid.UI
 {
     using HandyPackage;
+    using System.Threading.Tasks;
     using TMPro;
     using UniRx;
-    using UnityEngine;
 
-    public class UIInGame : MonoBehaviour
+    public class UIInGame : UISceneBase
     {
         public TextMeshProUGUI textPlayerLife;
         public TextMeshProUGUI textScore;
@@ -13,34 +13,29 @@
 
         private BookKeepingInGameData _bookKeepingInGameData;
 
-        private CompositeDisposable disposables = new CompositeDisposable();
-
-        private void Awake()
+        protected override Task OnUISceneInit()
         {
             _bookKeepingInGameData = DIResolver.GetObject<BookKeepingInGameData>();
+            return Task.CompletedTask;
         }
 
-        private void OnEnable()
+        protected override void OnActivated()
         {
+            base.OnActivated();
             _bookKeepingInGameData.PlayerLife.Subscribe(val =>
             {
                 textPlayerLife.text = $"Player Life : {val}";
-            }).AddTo(disposables);
+            }).AddTo(uiDisposables);
 
             _bookKeepingInGameData.Score.Subscribe(val =>
             {
                 textScore.text = $"Score : {val}";
-            }).AddTo(disposables);
+            }).AddTo(uiDisposables);
 
             _bookKeepingInGameData.HighScore.Subscribe(val =>
             {
                 textHighScore.text = $"{val}";
-            }).AddTo(disposables);
-        }
-
-        private void OnDisable()
-        {
-            disposables.Clear();
+            }).AddTo(uiDisposables);
         }
     }
 
