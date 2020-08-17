@@ -18,19 +18,6 @@
             _gameSignal = DIResolver.GetObject<GameSignals>();
             _bookKeepingInGameData = DIResolver.GetObject<BookKeepingInGameData>();
 
-            _gameSignal.GameOverSignal.Listen(() =>
-            {
-                CompositeDisposable tempDisposable = new CompositeDisposable();
-                Observable.EveryUpdate().Subscribe(x =>
-                {
-                    if (UnityEngine.Input.GetKeyDown(UnityEngine.KeyCode.Space))
-                    {
-                        StartGame();
-                        tempDisposable.Dispose();
-                    }
-                }).AddTo(tempDisposable);
-            }).AddTo(disposables);
-
             return UniTask.CompletedTask;
         }
 

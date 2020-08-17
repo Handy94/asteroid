@@ -18,8 +18,6 @@
 
             InstallStageWaveSystem();
             InstallScoreSystem();
-
-            Container.Install<GameStarterSystem>();
         }
 
         private void InstallFrameworkSystems()
@@ -53,9 +51,11 @@
 
         private void InstallGameSystem()
         {
+            Container.Install<GameStarterSystem>();
             Container.Install<PositionWrapperSystem>();
             Container.Install<DamageOnCollideTriggerSystem>();
             Container.Install<DecreasePlayerLifeOnDeadSystem>();
+            Container.Install<GameOverSystem>();
         }
 
         private void InstallScoreSystem()

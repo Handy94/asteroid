@@ -1,13 +1,12 @@
 ﻿using HandyPackage.FSM;
 using ParadoxNotion.Design;
 using UniRx.Async;
-using UnityEngine;
 
 namespace Asteroid
 {
     [Category("@@-Handy Package/States")]
-    [Name("Start Menu State")]
-    public class StartMenuState : UIBaseState
+    [Name("Game Over State")]
+    public class GameOverState : UIBaseState
     {
         public override UniTask OnPlayerAction(PlayerAction playerAction, object payload)
         {
@@ -16,8 +15,8 @@ namespace Asteroid
                 case PlayerAction.START_GAME:
                     GoToInGameState();
                     break;
-                case PlayerAction.QUIT_GAME:
-                    QuitGame();
+                case PlayerAction.BACK_TO_MAIN_MENU:
+                    BackToMainMenu();
                     break;
             }
             return UniTask.CompletedTask;
@@ -28,14 +27,9 @@ namespace Asteroid
             AppEventsManager.Publish_AppAction(AppAction.GOTO_IN_GAME_STATE);
         }
 
-        private void QuitGame()
+        private void BackToMainMenu()
         {
-#if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false;
-#else
-            Application.Quit();
-#endif
+            AppEventsManager.Publish_AppAction(AppAction.GOTO_START_STATE);
         }
     }
-
 }
