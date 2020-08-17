@@ -17,5 +17,5 @@ MonoBehaviour:
     score: 100
   - asteroidID: Asteroid-Medium
     score: 50
-  - asteroidID: Asteroid-Small
+  - asteroidID: Asteroid-Big
     score: 20
