@@ -60,12 +60,12 @@
             disposables.Clear();
         }
 
-        private void HandlePlayerSpawned(PlayerShipController playerShipController)
+        private void HandlePlayerSpawned(PlayerShipComponent playerShipController)
         {
             RegisterTransform(playerShipController.transform);
         }
 
-        private bool HandlePlayerDespawned(PlayerShipController playerShipController)
+        private bool HandlePlayerDespawned(PlayerShipComponent playerShipController)
         {
             RemoveTransform(playerShipController.transform);
             return true;

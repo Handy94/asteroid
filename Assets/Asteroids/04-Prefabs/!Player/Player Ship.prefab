@@ -99,8 +99,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41fd6f992c69eb24b85daabd692074f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 7235959864630910039}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: PlayerWeapon
+      Entry: 10
+      Data: 0
   ShipMovement: {fileID: 7435538152357355289}
-  PlayerWeapon: {fileID: 7235959864630910039}
 --- !u!114 &7435538152357355289
 MonoBehaviour:
   m_ObjectHideFlags: 0

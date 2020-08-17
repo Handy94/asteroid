@@ -33,13 +33,13 @@ namespace Asteroid
             disposables.Clear();
         }
 
-        private void HandlePlayerSpawned(PlayerShipController playerShipController)
+        private void HandlePlayerSpawned(PlayerShipComponent playerShipController)
         {
             _shipMovement = playerShipController.ShipMovement;
             ListenForPlayerInput();
         }
 
-        private bool HandlePlayerDespawned(PlayerShipController playerShipController)
+        private bool HandlePlayerDespawned(PlayerShipComponent playerShipController)
         {
             UnlistenForPlayerInput();
             _shipMovement = null;

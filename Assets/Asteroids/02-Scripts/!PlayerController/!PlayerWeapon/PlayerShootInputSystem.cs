@@ -30,13 +30,13 @@
             UnlistenForPlayerInput();
         }
 
-        private void HandlePlayerSpawned(PlayerShipController playerShipController)
+        private void HandlePlayerSpawned(PlayerShipComponent playerShipController)
         {
             _playerWeapon = playerShipController.PlayerWeapon;
             ListenForPlayerInput();
         }
 
-        private bool HandlePlayerDespawned(PlayerShipController playerShipController)
+        private bool HandlePlayerDespawned(PlayerShipComponent playerShipController)
         {
             UnlistenForPlayerInput();
             _playerWeapon = null;

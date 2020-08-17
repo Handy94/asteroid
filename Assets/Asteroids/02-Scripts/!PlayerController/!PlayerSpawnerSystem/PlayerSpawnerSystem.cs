@@ -40,7 +40,7 @@
         {
             if (gameEntityTag != GameEntityTag.PLAYER) return;
 
-            DespawnPlayer(go.GetComponent<PlayerShipController>());
+            DespawnPlayer(go.GetComponent<PlayerShipComponent>());
         }
 
         public async UniTask SpawnPlayer()
@@ -48,15 +48,15 @@
             await SpawnPlayer(_asteroidGameSettings.playerPrefab);
         }
 
-        public async UniTask SpawnPlayer(PlayerShipController playerPrefab)
+        public async UniTask SpawnPlayer(PlayerShipComponent playerPrefab)
         {
             GameObject go = await _multiplePrefabMemoryPool.SpawnObject(playerPrefab.gameObject);
             go.transform.position = Vector3.zero;
 
-            _gameSignals.PlayerSpawnedSignal.Fire(go.GetComponent<PlayerShipController>());
+            _gameSignals.PlayerSpawnedSignal.Fire(go.GetComponent<PlayerShipComponent>());
         }
 
-        public void DespawnPlayer(PlayerShipController player)
+        public void DespawnPlayer(PlayerShipComponent player)
         {
             _multiplePrefabMemoryPool.DespawnObject(player.gameObject);
 

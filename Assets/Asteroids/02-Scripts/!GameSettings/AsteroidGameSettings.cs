@@ -19,7 +19,7 @@
         public Vector2 maxAsteroidSpawnAdditionalViewportPosition = new Vector2(0.1f, 0.1f);
 
         [Header("Player")]
-        public PlayerShipController playerPrefab;
+        public PlayerShipComponent playerPrefab;
         public float respawnDelayInSeconds = 3;
 
         [Header("Score")]
