@@ -1,0 +1,1 @@
+[{"key":"INT_HIGH_SCORE","baseDataType":"int","keyDataType":"","valueDataType":"","isLocalOnly":false,"shouldGenerateGetter":true,"shouldGenerateMutator":true,"shouldGenerateForSubscribe":true,"shouldGenerateForTransactionMapper":false,"isEnoughCompareType":"GREATER_THAN"}]
