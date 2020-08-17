@@ -103,16 +103,19 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
+    - {fileID: 7435538152357355289}
     - {fileID: 7235959864630910039}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
     PrefabModifications: []
     SerializationNodes:
-    - Name: PlayerWeapon
+    - Name: _shipMovement
       Entry: 10
       Data: 0
-  ShipMovement: {fileID: 7435538152357355289}
+    - Name: _playerWeapon
+      Entry: 10
+      Data: 1
 --- !u!114 &7435538152357355289
 MonoBehaviour:
   m_ObjectHideFlags: 0

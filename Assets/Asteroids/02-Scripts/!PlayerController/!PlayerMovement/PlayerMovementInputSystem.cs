@@ -12,7 +12,7 @@ namespace Asteroid
 
         private GameSignals _gameSignals;
 
-        private ShipMovement _shipMovement;
+        private IShipMovement _shipMovement;
         private bool _canInput;
         private CompositeDisposable disposables = new CompositeDisposable();
         private CompositeDisposable inputDisposables = new CompositeDisposable();
@@ -64,8 +64,10 @@ namespace Asteroid
             float vAxis = Mathf.Clamp(Input.GetAxisRaw(INPUT_AXIS_VERTICAL), 0, 1);
             float hAxis = Input.GetAxisRaw(INPUT_AXIS_HORIZONTAL);
 
-            _shipMovement?.MoveShip(vAxis);
-            _shipMovement?.RotateShip(-hAxis);
+            if (vAxis > 0) _shipMovement?.MoveForward();
+
+            if (hAxis < 0) _shipMovement?.RotateCounterClockwise();
+            else if (hAxis > 0) _shipMovement?.RotateClockwise();
         }
     }
 }
