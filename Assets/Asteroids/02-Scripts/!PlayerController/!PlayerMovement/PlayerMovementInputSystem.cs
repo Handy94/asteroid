@@ -65,9 +65,11 @@ namespace Asteroid
             float hAxis = Input.GetAxisRaw(INPUT_AXIS_HORIZONTAL);
 
             if (vAxis > 0) _shipMovement?.MoveForward();
+            else _shipMovement?.StopMoveForward();
 
             if (hAxis < 0) _shipMovement?.RotateCounterClockwise();
             else if (hAxis > 0) _shipMovement?.RotateClockwise();
+            else _shipMovement.StopRotate();
         }
     }
 }

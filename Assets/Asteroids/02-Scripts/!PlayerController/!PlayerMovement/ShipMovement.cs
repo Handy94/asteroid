@@ -37,6 +37,11 @@
             _vInput = 1;
         }
 
+        public void StopMoveForward()
+        {
+            _vInput = 0;
+        }
+
         public void RotateCounterClockwise()
         {
             _hInput = 1;
@@ -45,6 +50,11 @@
         public void RotateClockwise()
         {
             _hInput = -1;
+        }
+
+        public void StopRotate()
+        {
+            _hInput = 0;
         }
     }
 
