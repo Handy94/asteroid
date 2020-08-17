@@ -23,7 +23,8 @@
         public float respawnDelayInSeconds = 3;
 
         [Header("Score")]
-        public int scorePerAsteroid = 10;
+        public int bonusLifeScoreMultiplierThreshold = 10000;
+        public int bonusLifeAdd = 1;
     }
 
 }

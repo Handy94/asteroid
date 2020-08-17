@@ -24,6 +24,5 @@ MonoBehaviour:
     playerPrefab: {fileID: 5494867434051232000, guid: 7ee2302d865938046a8b2453dc703089,
       type: 3}
     respawnDelayInSeconds: 3
-    scorePerAsteroid: 10
-  AsteroidScoreDataSource: {fileID: 11400000, guid: 536200d33eb24a34aa502aaee1a45153,
-    type: 2}
+    bonusLifeScoreMultiplierThreshold: 1000
+    bonusLifeAdd: 1

@@ -68,6 +68,7 @@
         {
             Container.Install<ScoreSystem>();
             Container.Install<AddScoreOnDestroyingAsteroidSystem>();
+            Container.Install<AddPlayerLifeAfterReachScoreMultiplierSystem>();
         }
 
         private void InstallHighScoreSystem()
