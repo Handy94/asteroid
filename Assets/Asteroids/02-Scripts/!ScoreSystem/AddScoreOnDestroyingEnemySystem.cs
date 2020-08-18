@@ -4,7 +4,7 @@
     using UniRx;
     using UniRx.Async;
 
-    public class AddScoreOnDestroyingAsteroidSystem : IInitializable, System.IDisposable
+    public class AddScoreOnDestroyingEnemySystem : IInitializable, System.IDisposable
     {
         private GameSignals _gameSignals;
         private ScoreSystem _scoreSystem;
@@ -17,11 +17,11 @@
         {
             _gameSignals = DIResolver.GetObject<GameSignals>();
             _scoreSystem = DIResolver.GetObject<ScoreSystem>();
-            _asteroidScoreDataSource = DIResolver.GetObject<AsteroidScoreDataSourceScriptableObject>();
+            _asteroidScoreDataSource = DIResolver.GetObject<EnemyScoreDataSourceScriptableObject>();
 
             _gameSignals.GameStartSignal.Listen(HandleGameStart, GameStartPrioritySignal.PRIORITY_SETUP_ADD_SCORE_SYSTEM).AddTo(disposables);
             _gameSignals.GameOverSignal.Listen(HandleGameOver).AddTo(disposables);
-            _gameSignals.AsteroidDespawnedSignal.Listen(HandleAsteroidDespawned).AddTo(disposables);
+            _gameSignals.EnemyDespawnedSignal.Listen(HandleEnemyDespawned).AddTo(disposables);
 
             return UniTask.CompletedTask;
         }
@@ -42,12 +42,12 @@
             _canAddScore = false;
         }
 
-        private void HandleAsteroidDespawned(AsteroidComponent asteroid, GameEntityTag gameEntityTag)
+        private void HandleEnemyDespawned(EnemyComponent enemy, GameEntityTag gameEntityTag)
         {
             if (gameEntityTag != GameEntityTag.BULLET) return;
             if (!_canAddScore) return;
 
-            int score = _asteroidScoreDataSource.GetScore(asteroid.AsteroidData.AsteroidID);
+            int score = _asteroidScoreDataSource.GetScore(enemy.EnemyData.EnemyID);
             _scoreSystem.AddScore(score);
         }
     }

@@ -4,11 +4,11 @@
 
     public class EnemyComponent : MonoBehaviour
     {
-        private EnemyData _enemyData;
+        public EnemyData EnemyData { get; private set; }
 
         public void SetData(EnemyData enemyData)
         {
-            _enemyData = enemyData;
+            EnemyData = enemyData;
         }
     }
 

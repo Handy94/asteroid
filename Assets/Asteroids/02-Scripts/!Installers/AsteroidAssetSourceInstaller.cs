@@ -8,11 +8,13 @@
     {
         public AsteroidGameAssetSource AsteroidAssetSource;
         public AsteroidScoreDataSourceScriptableObject AsteroidScoreDataSource;
+        public EnemyScoreDataSourceScriptableObject EnemyScoreDataSource;
 
         public override void InstallDependencies()
         {
             Container.Install(AsteroidAssetSource);
             Container.Install(AsteroidScoreDataSource);
+            Container.Install(EnemyScoreDataSource);
         }
     }
 }

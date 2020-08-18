@@ -9,22 +9,22 @@ using Asteroid.Editor;
 namespace Asteroid
 {
     [System.Serializable]
-    public struct AsteroidScoreData
+    public struct EnemyScoreData
     {
 #if UNITY_EDITOR
-        [ValueDropdown("GetAllAsteroidID")]
+        [ValueDropdown("GetAllEnemyID")]
 #endif
         [SerializeField]
-        private string asteroidID;
+        private string enemyID;
         [SerializeField] private int score;
 
-        public string AsteroidID => asteroidID;
+        public string EnemyID => enemyID;
         public int Score => score;
 
 #if UNITY_EDITOR
-        private IEnumerable GetAllAsteroidID()
+        private IEnumerable GetAllEnemyID()
         {
-            return EditorUtilities.GetAllAssets<AsteroidData>().Select(x => x.AsteroidID);
+            return EditorUtilities.GetAllAssets<EnemyData>().Select(x => x.EnemyID);
         }
 #endif
     }

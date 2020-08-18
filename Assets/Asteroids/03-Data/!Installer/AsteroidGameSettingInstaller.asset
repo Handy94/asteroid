@@ -24,8 +24,9 @@ MonoBehaviour:
     playerPrefab: {fileID: 5494867434051232000, guid: 7ee2302d865938046a8b2453dc703089,
       type: 3}
     respawnDelayInSeconds: 3
-    bonusLifeScoreMultiplierThreshold: 1000
+    bonusLifeScoreMultiplierThreshold: 10000
     bonusLifeAdd: 1
     enemySpawnInterval: 5
+    maxEnemyOnScreen: 2
     minEnemySpawnAdditionalViewportPosition: {x: 0.05, y: 0.05}
     maxEnemySpawnAdditionalViewportPosition: {x: 0.08, y: 0.08}

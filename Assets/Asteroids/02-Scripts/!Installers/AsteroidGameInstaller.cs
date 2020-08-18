@@ -15,12 +15,11 @@
 
             InstallBulletSystem();
             InstallAsteroidSystem();
+            InstallEnemySystem();
 
             InstallStageWaveSystem();
             InstallScoreSystem();
             InstallHighScoreSystem();
-
-            InstallEnemySystem();
         }
 
         private void InstallFrameworkSystems()
@@ -70,6 +69,7 @@
         {
             Container.Install<ScoreSystem>();
             Container.Install<AddScoreOnDestroyingAsteroidSystem>();
+            Container.Install<AddScoreOnDestroyingEnemySystem>();
             Container.Install<AddPlayerLifeAfterReachScoreMultiplierSystem>();
         }
 

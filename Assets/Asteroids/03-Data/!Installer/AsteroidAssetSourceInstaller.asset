@@ -30,3 +30,5 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 95d5db5ad7ffdab4381977e94dcca8cd, type: 2}
   AsteroidScoreDataSource: {fileID: 11400000, guid: 536200d33eb24a34aa502aaee1a45153,
     type: 2}
+  EnemyScoreDataSource: {fileID: 11400000, guid: ae5f2c771a3e60b41bf6b597187ad76e,
+    type: 2}
