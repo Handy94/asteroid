@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpriteAtlas-Asteroid-Game
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: b15b62b10a33f2e46898112efb9e87da, type: 3}
+    totalSpriteSurfaceArea: 12705
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a778409033b1cbf4c91e01de31364a88, type: 3}
+  - {fileID: -4938597717103820542, guid: 2fd11393ccb355d4ea3a4a76c2e752aa, type: 3}
+  - {fileID: -9054280756231213343, guid: 2fd11393ccb355d4ea3a4a76c2e752aa, type: 3}
+  - {fileID: -3521255779322364005, guid: 2fd11393ccb355d4ea3a4a76c2e752aa, type: 3}
+  - {fileID: 3622742967533678463, guid: 2fd11393ccb355d4ea3a4a76c2e752aa, type: 3}
+  - {fileID: 21300000, guid: 7375dd358bc73fe45a5215e0a607a719, type: 3}
+  - {fileID: 21300000, guid: f75343a534579ef41bab4a60cb29e78c, type: 3}
+  - {fileID: 21300000, guid: d3d0434a9ff2d864899ab597d12241ae, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - bullet
+  - red_ufo_0
+  - red_ufo_1
+  - red_ufo_2
+  - red_ufo_3
+  - ship
+  - asteroid
+  - red-bullet-resized
+  m_Tag: SpriteAtlas-Asteroid-Game
+  m_IsVariant: 0

@@ -11,6 +11,7 @@
             public const int REMOVE_FROM_POSITION_WRAPPER = 3;
             public const int DECREASE_PLAYER_LIFE = 4;
             public const int RESPAWN_PLAYER = 5;
+            public const int ENEMY_FSM = 6;
         }
     }
 

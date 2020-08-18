@@ -10,6 +10,8 @@ namespace Asteroid
 
         public IntReactiveProperty CurrentStage = new IntReactiveProperty(1);
         public IntReactiveProperty AsteroidCount = new IntReactiveProperty(0);
+
+        public PlayerShipComponent PlayerShipComponent;
     }
 
 }

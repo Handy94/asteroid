@@ -5,7 +5,6 @@
 
     public class GameSignals
     {
-        public EventSignal<GameObject, Transform[]> PlayerShootSignal = new EventSignal<GameObject, Transform[]>();
         public EventSignal<BulletComponent> BulletSpawnedSignal = new EventSignal<BulletComponent>();
         public EventSignal<BulletComponent> BulletDespawnedSignal = new EventSignal<BulletComponent>();
 

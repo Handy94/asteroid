@@ -1,5 +1,6 @@
 ﻿using NodeCanvas.Framework;
 using ParadoxNotion.Design;
+using UniRx;
 
 [Category("@@-Handy Package/UI")]
 public class CheckForAppActionEventsCondition : ConditionTask
@@ -8,14 +9,16 @@ public class CheckForAppActionEventsCondition : ConditionTask
 
     protected override string info => $"Is AppAction Event {checkedAppAction}";
 
+    private CompositeDisposable disposables = new CompositeDisposable();
+
     protected override void OnEnable()
     {
-        AppEventsManager.Evt_OnAppActionPublished.Listen(HandleAppActionAction);
+        AppEventsManager.Evt_OnAppActionPublished.Listen(HandleAppActionAction).AddTo(disposables);
     }
 
     protected override void OnDisable()
     {
-        AppEventsManager.Evt_OnAppActionPublished.Unlisten(HandleAppActionAction);
+        disposables.Clear();
     }
 
     protected override bool OnCheck()

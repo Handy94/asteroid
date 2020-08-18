@@ -19,6 +19,8 @@
             InstallStageWaveSystem();
             InstallScoreSystem();
             InstallHighScoreSystem();
+
+            InstallEnemySystem();
         }
 
         private void InstallFrameworkSystems()
@@ -74,6 +76,11 @@
         private void InstallHighScoreSystem()
         {
             Container.Install<InGameHighScoreManager>();
+        }
+
+        private void InstallEnemySystem()
+        {
+            Container.Install<EnemySaucerSpawnerSystem>();
         }
     }
 }

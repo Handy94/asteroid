@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1688948075128715059}
   - component: {fileID: 5647966240749813688}
   m_Layer: 0
-  m_Name: Weapon Basic
+  m_Name: EnemyWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,11 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94584848daf88d049b61b5015853ddbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6720273254150852090, guid: e2048183d7cef0145b93da82253c09df,
+  bulletPrefab: {fileID: 6720273254150852090, guid: 475b413a55f1ae04a94adc7d26f705cc,
     type: 3}
   bulletSpawnPoint:
   - {fileID: 1290459540443605031}
-  fireRate: 5
+  fireRate: 0.5
 --- !u!1 &4496001193823264851
 GameObject:
   m_ObjectHideFlags: 0
@@ -58,6 +58,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1290459540443605031}
+  - component: {fileID: 5405185387958432382}
   m_Layer: 0
   m_Name: SpawnPoint
   m_TagString: Untagged
@@ -72,10 +73,22 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4496001193823264851}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1688948075128715059}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &5405185387958432382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4496001193823264851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a46eee976135943aaa5e30f0fe278f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

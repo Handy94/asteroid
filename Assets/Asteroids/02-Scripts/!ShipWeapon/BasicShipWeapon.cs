@@ -3,19 +3,19 @@ using UnityEngine;
 
 namespace Asteroid
 {
-    public class PlayerWeapon : MonoBehaviour, IWeapon
+    public class BasicShipWeapon : MonoBehaviour, IWeapon
     {
         public GameObject bulletPrefab;
         public Transform[] bulletSpawnPoint;
         public float fireRate = 1;
 
-        private GameSignals _gameSignals;
+        private BulletSpawnerSystem _bulletSpawnerSystem;
 
         private float fireTime = 0f;
 
         private void Awake()
         {
-            _gameSignals = DIResolver.GetObject<GameSignals>();
+            _bulletSpawnerSystem = DIResolver.GetObject<BulletSpawnerSystem>();
             fireTime = 1f;
         }
 
@@ -32,12 +32,16 @@ namespace Asteroid
             return fireTime >= (1 / fireRate);
         }
 
-        public void Shoot()
+        public async void Shoot()
         {
             if (CanShoot())
             {
                 fireTime = 0f;
-                _gameSignals.PlayerShootSignal.Fire(bulletPrefab, bulletSpawnPoint);
+                var bullets = await _bulletSpawnerSystem.SpawnBullet(bulletPrefab, bulletSpawnPoint);
+                for (int i = 0; i < bullets.Count; i++)
+                {
+                    bullets[i].Init(bulletSpawnPoint[i].right);
+                }
             }
         }
 

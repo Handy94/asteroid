@@ -1,6 +1,7 @@
 ﻿namespace Asteroid
 {
     using HandyPackage;
+    using System.Collections.Generic;
     using UniRx.Async;
     using UnityEngine;
 
@@ -16,7 +17,6 @@
             _gameSignals = DIResolver.GetObject<GameSignals>();
             _multiplePrefabMemoryPool = DIResolver.GetObject<MultiplePrefabMemoryPool>();
 
-            _gameSignals.PlayerShootSignal.Listen(HandlePlayerShoot).AddToDisposables(disposables);
             _gameSignals.GameEntityDespawnedSignal.Listen(HandleGameEntityDespawned).AddToDisposables(disposables);
 
             return UniTask.CompletedTask;
@@ -34,32 +34,36 @@
 
         private void HandleGameEntityDespawned(GameObject go, GameEntityTag gameEntityTag, GameEntityTag despawner)
         {
-            if (gameEntityTag != GameEntityTag.BULLET) return;
+            if (gameEntityTag != GameEntityTag.BULLET && gameEntityTag != GameEntityTag.ENEMY_BULLET) return;
             DespawnBullet(go.GetComponent<BulletComponent>());
         }
 
-        private async UniTask SpawnBullet(GameObject prefab, Transform[] spawnPoints)
+        public async UniTask<List<BulletComponent>> SpawnBullet(GameObject prefab, Transform[] spawnPoints)
         {
-            if (prefab == null) return;
+            List<BulletComponent> bullets = new List<BulletComponent>();
+
+            if (prefab == null) return bullets;
             int spawnPointCount = spawnPoints.Length;
 
             for (int i = 0; i < spawnPointCount; i++)
             {
                 if (spawnPoints[i] == null) continue;
-                await SpawnBullet(prefab, spawnPoints[i]);
+                var newBullet = await SpawnBullet(prefab, spawnPoints[i]);
+                bullets.Add(newBullet);
             }
+            return bullets;
         }
 
-        private async UniTask SpawnBullet(GameObject prefab, Transform spawnPoint)
+        public async UniTask<BulletComponent> SpawnBullet(GameObject prefab, Transform spawnPoint)
         {
             GameObject bulletGO = await _multiplePrefabMemoryPool.SpawnObject(prefab);
             bulletGO.transform.position = spawnPoint.position;
             bulletGO.transform.rotation = spawnPoint.rotation;
 
             BulletComponent bullet = bulletGO.GetComponent<BulletComponent>();
-            bullet.Init(spawnPoint.up);
 
             _gameSignals.BulletSpawnedSignal.Fire(bullet);
+            return bullet;
         }
 
         private void DespawnBullet(BulletComponent bullet)

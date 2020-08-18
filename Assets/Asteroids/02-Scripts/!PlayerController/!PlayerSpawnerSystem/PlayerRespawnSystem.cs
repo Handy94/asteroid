@@ -12,6 +12,7 @@
         private PlayerSpawnerSystem _playerSpawnerSystem;
 
         private CompositeDisposable disposables = new CompositeDisposable();
+        private bool _isRespawning = false;
 
         public UniTask Initialize()
         {
@@ -41,10 +42,14 @@
 
         private async UniTask RespawnPlayerWithDelay(float delayInSeconds)
         {
+            if (_isRespawning) return;
+            _isRespawning = true;
+
             float millis = delayInSeconds * 1000;
             await UniTask.Delay((int)millis);
 
-            _playerSpawnerSystem.SpawnPlayer();
+            _isRespawning = false;
+            await _playerSpawnerSystem.SpawnPlayer();
         }
     }
 

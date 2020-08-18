@@ -25,6 +25,10 @@
         [Header("Score")]
         public int bonusLifeScoreMultiplierThreshold = 10000;
         public int bonusLifeAdd = 1;
+
+        [Header("Enemy")]
+        public GameObject enemySaucerPrefab;
+        public float enemySpawnInterval = 5;
     }
 
 }
