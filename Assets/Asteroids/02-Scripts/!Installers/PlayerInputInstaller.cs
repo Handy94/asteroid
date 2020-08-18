@@ -8,6 +8,7 @@
         {
             InstallMovementSystem();
             InstallWeaponSystem();
+            InstallOtherSystem();
         }
 
         private void InstallMovementSystem()
@@ -18,6 +19,11 @@
         private void InstallWeaponSystem()
         {
             Container.Install<PlayerShootInputSystem>();
+        }
+
+        private void InstallOtherSystem()
+        {
+            Container.Install<PlayerHyperSpaceInputSystem>();
         }
     }
 }

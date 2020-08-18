@@ -22,6 +22,9 @@
 
         public EventSignal<EnemyComponent> EnemySpawnedSignal = new EventSignal<EnemyComponent>();
         public EventSignal<EnemyComponent, GameEntityTag> EnemyDespawnedSignal = new EventSignal<EnemyComponent, GameEntityTag>();
+
+        public EventSignal PlayerDoHyperSpaceSignal = new EventSignal();
+        public EventSignal PlayerHyperSpaceFinishedSignal = new EventSignal();
     }
 
 }

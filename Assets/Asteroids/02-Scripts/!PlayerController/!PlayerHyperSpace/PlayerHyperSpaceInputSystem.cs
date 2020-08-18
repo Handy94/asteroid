@@ -5,14 +5,11 @@ using UnityEngine;
 
 namespace Asteroid
 {
-    public class PlayerMovementInputSystem : IInitializable, System.IDisposable, IPlayerInputListener
+    public class PlayerHyperSpaceInputSystem : IInitializable, System.IDisposable, IPlayerInputListener
     {
-        private const string INPUT_AXIS_VERTICAL = "Vertical";
-        private const string INPUT_AXIS_HORIZONTAL = "Horizontal";
-
         private GameSignals _gameSignals;
 
-        private IShipMovement _shipMovement;
+        private IShipHyperSpace _shipHyperSpace;
         private CompositeDisposable disposables = new CompositeDisposable();
         private CompositeDisposable inputDisposables = new CompositeDisposable();
 
@@ -36,14 +33,14 @@ namespace Asteroid
 
         private void HandlePlayerSpawned(PlayerShipComponent playerShipController)
         {
-            _shipMovement = playerShipController.ShipMovement;
+            _shipHyperSpace = playerShipController.HyperSpace;
             ListenForPlayerInput();
         }
 
         private bool HandlePlayerDespawned(PlayerShipComponent playerShipController)
         {
             UnlistenForPlayerInput();
-            _shipMovement = null;
+            _shipHyperSpace = null;
             return true;
         }
 
@@ -72,15 +69,19 @@ namespace Asteroid
 
         private void CheckInput()
         {
-            float vAxis = Mathf.Clamp(Input.GetAxisRaw(INPUT_AXIS_VERTICAL), 0, 1);
-            float hAxis = Input.GetAxisRaw(INPUT_AXIS_HORIZONTAL);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                DoHyperSpace();
+            }
+        }
 
-            if (vAxis > 0) _shipMovement?.MoveForward();
-            else _shipMovement?.StopMoveForward();
-
-            if (hAxis < 0) _shipMovement?.RotateCounterClockwise();
-            else if (hAxis > 0) _shipMovement?.RotateClockwise();
-            else _shipMovement.StopRotate();
+        private void DoHyperSpace()
+        {
+            _gameSignals.PlayerDoHyperSpaceSignal.Fire();
+            _shipHyperSpace.DoHyperSpace(() =>
+            {
+                _gameSignals.PlayerHyperSpaceFinishedSignal.Fire();
+            });
         }
     }
 }

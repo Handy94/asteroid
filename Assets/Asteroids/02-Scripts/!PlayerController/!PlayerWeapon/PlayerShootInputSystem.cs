@@ -21,6 +21,8 @@
 
             _gameSignals.PlayerSpawnedSignal.Listen(HandlePlayerSpawned).AddTo(disposables);
             _gameSignals.PlayerDespawnedSignal.Listen(HandlePlayerDespawned, PlayerDespawnedPrioritySignal.Priority.UNLISTEN_PLAYER_SHOOT_INPUT).AddTo(disposables);
+            _gameSignals.PlayerDoHyperSpaceSignal.Listen(HandlePlayerDoHyperSpace).AddTo(disposables);
+            _gameSignals.PlayerHyperSpaceFinishedSignal.Listen(HandlePlayerHyperSpaceFinished).AddTo(disposables);
 
             return UniTask.CompletedTask;
         }
@@ -41,6 +43,16 @@
             UnlistenForPlayerInput();
             _playerWeapon = null;
             return true;
+        }
+
+        private void HandlePlayerDoHyperSpace()
+        {
+            UnlistenForPlayerInput();
+        }
+
+        private void HandlePlayerHyperSpaceFinished()
+        {
+            ListenForPlayerInput();
         }
 
         public void ListenForPlayerInput()
