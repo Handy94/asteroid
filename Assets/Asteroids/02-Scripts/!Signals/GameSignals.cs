@@ -19,6 +19,9 @@
 
         public GameStartPrioritySignal GameStartSignal = new GameStartPrioritySignal();
         public EventSignal GameOverSignal = new EventSignal();
+
+        public EventSignal<EnemyComponent> EnemySpawnedSignal = new EventSignal<EnemyComponent>();
+        public EventSignal<EnemyComponent, GameEntityTag> EnemyDespawnedSignal = new EventSignal<EnemyComponent, GameEntityTag>();
     }
 
 }

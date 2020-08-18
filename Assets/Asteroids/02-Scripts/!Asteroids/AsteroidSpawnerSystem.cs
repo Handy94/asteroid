@@ -10,7 +10,7 @@
     {
         private MultiplePrefabMemoryPool _multiplePrefabMemoryPool;
         private AsteroidGameSettings _asteroidGameSettings;
-        private AsteroidAssetSource _asteroidAssetSource;
+        private AsteroidGameAssetSource _asteroidAssetSource;
         private GameSignals _gameSignals;
 
         private List<AsteroidComponent> _spawnedAsteroids = new List<AsteroidComponent>();
@@ -25,7 +25,7 @@
         {
             _multiplePrefabMemoryPool = DIResolver.GetObject<MultiplePrefabMemoryPool>();
             _asteroidGameSettings = DIResolver.GetObject<AsteroidGameSettings>();
-            _asteroidAssetSource = DIResolver.GetObject<AsteroidAssetSource>();
+            _asteroidAssetSource = DIResolver.GetObject<AsteroidGameAssetSource>();
             _gameSignals = DIResolver.GetObject<GameSignals>();
 
             Camera mainCamera = Camera.main;
@@ -106,6 +106,7 @@
 
         private void DespawnAsteroid(AsteroidComponent asteroidComponent, GameEntityTag despawner)
         {
+            _spawnedAsteroids.Remove(asteroidComponent);
             _gameSignals.AsteroidDespawnedSignal.Fire(asteroidComponent, despawner);
             _multiplePrefabMemoryPool.DespawnObject(asteroidComponent.gameObject);
         }
@@ -117,6 +118,7 @@
             {
                 _multiplePrefabMemoryPool.DespawnObject(_spawnedAsteroids[i].gameObject);
             }
+            _spawnedAsteroids.Clear();
         }
     }
 

@@ -1,13 +1,20 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Asteroid
 {
     [System.Serializable]
-    public class AsteroidAssetSource
+    public class AsteroidGameAssetSource
     {
+        [Header("Asteroid")]
         public List<AsteroidData> asteroidSpawnVariants;
         public List<AsteroidSplitData> asteroidSplitDataList;
+
+        [Header("Stage")]
         public List<StageWaveData> stageWaveDataList;
+
+        [Header("Enemy")]
+        public List<EnemyData> enemyDataList;
 
         public AsteroidData GetAsteroidData(string asteroidID)
         {
@@ -25,6 +32,11 @@ namespace Asteroid
             if (stage > stageWaveDataList.Count) stage = stageWaveDataList.Count;
 
             return stageWaveDataList[stage - 1];
+        }
+
+        public EnemyData GetEnemyData(string enemyID)
+        {
+            return enemyDataList.Find(x => x.EnemyID.Equals(enemyID));
         }
     }
 

@@ -27,8 +27,10 @@
         public int bonusLifeAdd = 1;
 
         [Header("Enemy")]
-        public GameObject enemySaucerPrefab;
         public float enemySpawnInterval = 5;
+        public float maxEnemyOnScreen = 2;
+        public Vector2 minEnemySpawnAdditionalViewportPosition = new Vector2(0.05f, 0.05f);
+        public Vector2 maxEnemySpawnAdditionalViewportPosition = new Vector2(0.1f, 0.1f);
     }
 
 }

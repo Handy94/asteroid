@@ -9,7 +9,7 @@
     {
         private GameSignals _gameSignals;
         private AsteroidSpawnerSystem _asteroidSpawnerSystem;
-        private AsteroidAssetSource _asteroidAssetSource;
+        private AsteroidGameAssetSource _asteroidAssetSource;
 
         private CompositeDisposable disposables = new CompositeDisposable();
 
@@ -17,7 +17,7 @@
         {
             _gameSignals = DIResolver.GetObject<GameSignals>();
             _asteroidSpawnerSystem = DIResolver.GetObject<AsteroidSpawnerSystem>();
-            _asteroidAssetSource = DIResolver.GetObject<AsteroidAssetSource>();
+            _asteroidAssetSource = DIResolver.GetObject<AsteroidGameAssetSource>();
 
             _gameSignals.AsteroidDespawnedSignal.Listen(HandleAsteroidDespawned).AddTo(disposables);
             return UniTask.CompletedTask;

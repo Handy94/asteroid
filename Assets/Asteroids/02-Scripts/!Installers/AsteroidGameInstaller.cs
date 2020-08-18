@@ -81,6 +81,7 @@
         private void InstallEnemySystem()
         {
             Container.Install<EnemySaucerSpawnerSystem>();
+            Container.Install<SpawnEnemySaucerOnIntervalSystem>();
         }
     }
 }

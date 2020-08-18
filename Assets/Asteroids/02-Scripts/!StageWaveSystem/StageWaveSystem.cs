@@ -9,7 +9,7 @@
     {
         private GameSignals _gameSignals;
         private AsteroidSpawnerSystem _asteroidSpawnerSystem;
-        private AsteroidAssetSource _asteroidAssetSource;
+        private AsteroidGameAssetSource _asteroidAssetSource;
         private BookKeepingInGameData _bookKeepingInGameData;
 
         private CompositeDisposable disposables = new CompositeDisposable();
@@ -18,7 +18,7 @@
         {
             _gameSignals = DIResolver.GetObject<GameSignals>();
             _asteroidSpawnerSystem = DIResolver.GetObject<AsteroidSpawnerSystem>();
-            _asteroidAssetSource = DIResolver.GetObject<AsteroidAssetSource>();
+            _asteroidAssetSource = DIResolver.GetObject<AsteroidGameAssetSource>();
             _bookKeepingInGameData = DIResolver.GetObject<BookKeepingInGameData>();
 
             _gameSignals.GameStartSignal.Listen(HandleGameStartSignal, GameStartPrioritySignal.PRIORITY_SPAWN_WAVE).AddTo(disposables);

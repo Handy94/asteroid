@@ -29,6 +29,7 @@ namespace Asteroid
         protected override void OnEnter()
         {
             base.OnEnter();
+            _shootTimer = 0f;
 
             SetupRandomPosition();
         }

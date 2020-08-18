@@ -6,7 +6,7 @@
     [CreateAssetMenu(fileName = "AsteroidAssetSourceInstaller", menuName = "Installers/AsteroidAssetSourceInstaller")]
     public class AsteroidAssetSourceInstaller : ScriptableObjectInstaller
     {
-        public AsteroidAssetSource AsteroidAssetSource;
+        public AsteroidGameAssetSource AsteroidAssetSource;
         public AsteroidScoreDataSourceScriptableObject AsteroidScoreDataSource;
 
         public override void InstallDependencies()

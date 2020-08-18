@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1474410854595011795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1474410855333148055}
   m_RootOrder: 0
@@ -94,6 +94,7 @@ GameObject:
   - component: {fileID: 1474410855333148055}
   - component: {fileID: 1474410855333148056}
   - component: {fileID: 1474410855333148057}
+  - component: {fileID: 3342053739355157525}
   - component: {fileID: 1474410855333148058}
   - component: {fileID: 143372910464415589}
   - component: {fileID: 8799453939132882082}
@@ -102,7 +103,7 @@ GameObject:
   - component: {fileID: 2007803980692943951}
   - component: {fileID: 4163653656692912189}
   m_Layer: 11
-  m_Name: Enemy Saucer
+  m_Name: EnemySaucer-Big
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -137,7 +138,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.0026088357}
+  m_Offset: {x: 0, y: -0.042017043}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -148,7 +149,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.796281, y: 0.2429648}
+  m_Size: {x: 1.4961702, y: 0.4008711}
   m_EdgeRadius: 0
 --- !u!50 &1474410855333148057
 Rigidbody2D:
@@ -171,6 +172,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &3342053739355157525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474410855333148054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1fe50eee78f5af409eff49db3821c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1474410855333148058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,7 +267,7 @@ MonoBehaviour:
   boundGraphObjectReferences: []
   enableAction: 0
   disableAction: 0
-  _graph: {fileID: 11400000, guid: 668dd17260145484f9f04d8ad00f78da, type: 2}
+  _graph: {fileID: 11400000, guid: 7c0ce24e94ded8748ad62780a00a9915, type: 2}
   _blackboard: {fileID: 4163653656692912189}
 --- !u!114 &4163653656692912189
 MonoBehaviour:

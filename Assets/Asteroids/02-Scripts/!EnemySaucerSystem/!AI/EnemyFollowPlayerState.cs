@@ -30,6 +30,7 @@ namespace Asteroid
         protected override void OnEnter()
         {
             base.OnEnter();
+            _shootTimer = 0f;
 
             if (_bookKeepingInGameData.PlayerShipComponent != null) playerTransform = _bookKeepingInGameData.PlayerShipComponent.transform;
         }

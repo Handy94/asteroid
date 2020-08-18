@@ -26,6 +26,6 @@ MonoBehaviour:
     respawnDelayInSeconds: 3
     bonusLifeScoreMultiplierThreshold: 1000
     bonusLifeAdd: 1
-    enemySaucerPrefab: {fileID: 1474410855333148054, guid: 30934741d2d829145a7374ebfd6e4733,
-      type: 3}
     enemySpawnInterval: 5
+    minEnemySpawnAdditionalViewportPosition: {x: 0.05, y: 0.05}
+    maxEnemySpawnAdditionalViewportPosition: {x: 0.08, y: 0.08}
