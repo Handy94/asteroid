@@ -7,7 +7,7 @@ namespace Asteroid
     using UniRx;
 
     [Category("@@-Handy Package/Enemy")]
-    public class CheckForPlayerDespawnedCondition : ConditionTask
+    public class CheckForPlayerExistCondition : ConditionTask
     {
         private GameSignals _gameSignals;
         private BookKeepingInGameData _bookKeepingInGameData;
@@ -28,12 +28,17 @@ namespace Asteroid
         {
             base.OnEnable();
 
-            if (_bookKeepingInGameData.PlayerShipComponent == null)
+            if (_bookKeepingInGameData.PlayerShipComponent != null)
             {
-                YieldReturn(true);
+                var hyperSpaceComp = _bookKeepingInGameData.PlayerShipComponent.GetComponent<IShipHyperSpace>();
+                if (!hyperSpaceComp.IsOnHyperSpace)
+                {
+                    YieldReturn(true);
+                }
             }
 
-            _gameSignals.PlayerDespawnedSignal.Listen(HandlePlayerDespawned, PlayerDespawnedPrioritySignal.Priority.ENEMY_FSM).AddTo(disposables);
+            _gameSignals.PlayerSpawnedSignal.Listen(HandlePlayerSpawned).AddTo(disposables);
+            _gameSignals.PlayerHyperSpaceFinishedSignal.Listen(HandlePlayerHyperSpaceFinished).AddTo(disposables);
         }
 
         protected override bool OnCheck()
@@ -47,10 +52,14 @@ namespace Asteroid
             disposables.Clear();
         }
 
-        private bool HandlePlayerDespawned(PlayerShipComponent playerShipComponent)
+        private void HandlePlayerSpawned(PlayerShipComponent playerShipComponent)
         {
             YieldReturn(true);
-            return true;
+        }
+
+        private void HandlePlayerHyperSpaceFinished()
+        {
+            YieldReturn(true);
         }
     }
 

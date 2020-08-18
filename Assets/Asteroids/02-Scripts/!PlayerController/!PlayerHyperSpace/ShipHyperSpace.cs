@@ -27,9 +27,7 @@
             if (IsOnHyperSpace) return;
             IsOnHyperSpace = true;
 
-            StartCoroutine(Coroutine_HyperSpace());
-
-            onDone?.Invoke();
+            StartCoroutine(Coroutine_HyperSpace(onDone));
         }
 
         private void SetShipAppear(bool isAppear)
@@ -49,7 +47,7 @@
             rb.MovePosition(worldPos);
         }
 
-        private IEnumerator Coroutine_HyperSpace()
+        private IEnumerator Coroutine_HyperSpace(System.Action onDone)
         {
             SetShipAppear(false);
 
@@ -61,6 +59,7 @@
 
             SetShipAppear(true);
 
+            onDone?.Invoke();
             IsOnHyperSpace = false;
         }
     }
