@@ -20,6 +20,8 @@
 
             _gameSignals.GameOverSignal.Listen(HandleGameOver).AddToDisposables(disposables);
 
+            _bookKeepingInGameData.HighScore.Value = _highScoreManager.GetCurrentHighScore();
+
             return UniTask.CompletedTask;
         }
 
