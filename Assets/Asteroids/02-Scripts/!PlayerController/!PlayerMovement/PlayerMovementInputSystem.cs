@@ -1,86 +1,44 @@
-﻿using HandyPackage;
-using UniRx;
-using UniRx.Async;
-using UnityEngine;
-
-namespace Asteroid
+﻿namespace Asteroid
 {
-    public class PlayerMovementInputSystem : IInitializable, System.IDisposable, IPlayerInputListener
+    public class PlayerMovementInputSystem : BasePlayerInputSystem
     {
-        private const string INPUT_AXIS_VERTICAL = "Vertical";
-        private const string INPUT_AXIS_HORIZONTAL = "Horizontal";
-
-        private GameSignals _gameSignals;
-
         private IShipMovement _shipMovement;
-        private CompositeDisposable disposables = new CompositeDisposable();
-        private CompositeDisposable inputDisposables = new CompositeDisposable();
 
-        public UniTask Initialize()
+        protected override void HandlePlayerSpawned(PlayerShipComponent playerShipController)
         {
-            _gameSignals = DIResolver.GetObject<GameSignals>();
-
-            _gameSignals.PlayerSpawnedSignal.Listen(HandlePlayerSpawned).AddTo(disposables);
-            _gameSignals.PlayerDespawnedSignal.Listen(HandlePlayerDespawned, PlayerDespawnedPrioritySignal.Priority.UNLISTEN_PLAYER_MOVE_INPUT).AddTo(disposables);
-            _gameSignals.PlayerDoHyperSpaceSignal.Listen(HandlePlayerDoHyperSpace).AddTo(disposables);
-            _gameSignals.PlayerHyperSpaceFinishedSignal.Listen(HandlePlayerHyperSpaceFinished).AddTo(disposables);
-
-            return UniTask.CompletedTask;
-        }
-
-        public void Dispose()
-        {
-            UnlistenForPlayerInput();
-            disposables.Clear();
-        }
-
-        private void HandlePlayerSpawned(PlayerShipComponent playerShipController)
-        {
+            base.HandlePlayerSpawned(playerShipController);
             _shipMovement = playerShipController.ShipMovement;
-            ListenForPlayerInput();
         }
 
-        private bool HandlePlayerDespawned(PlayerShipComponent playerShipController)
+        protected override bool HandlePlayerDespawned(PlayerShipComponent playerShipController)
         {
-            UnlistenForPlayerInput();
+            base.HandlePlayerDespawned(playerShipController);
             _shipMovement = null;
             return true;
         }
 
-        private void HandlePlayerDoHyperSpace()
+        protected override void HandlePlayerInput(PlayerShipInputKey inputKey)
         {
-            UnlistenForPlayerInput();
-        }
-
-        private void HandlePlayerHyperSpaceFinished()
-        {
-            ListenForPlayerInput();
-        }
-
-        public void ListenForPlayerInput()
-        {
-            Observable.EveryUpdate().Subscribe(x =>
+            switch (inputKey)
             {
-                CheckInput();
-            }).AddTo(inputDisposables);
-        }
-
-        public void UnlistenForPlayerInput()
-        {
-            inputDisposables.Clear();
-        }
-
-        private void CheckInput()
-        {
-            float vAxis = Mathf.Clamp(Input.GetAxisRaw(INPUT_AXIS_VERTICAL), 0, 1);
-            float hAxis = Input.GetAxisRaw(INPUT_AXIS_HORIZONTAL);
-
-            if (vAxis > 0) _shipMovement?.MoveForward();
-            else _shipMovement?.StopMoveForward();
-
-            if (hAxis < 0) _shipMovement?.RotateCounterClockwise();
-            else if (hAxis > 0) _shipMovement?.RotateClockwise();
-            else _shipMovement.StopRotate();
+                case PlayerShipInputKey.MOVE_FORWARD:
+                    _shipMovement?.MoveForward();
+                    break;
+                case PlayerShipInputKey.STOP_MOVE_FORWARD:
+                    _shipMovement?.StopMoveForward();
+                    break;
+                case PlayerShipInputKey.ROTATE_COUNTERCLOCKWISE:
+                    _shipMovement?.RotateCounterClockwise();
+                    break;
+                case PlayerShipInputKey.ROTATE_CLOCKWISE:
+                    _shipMovement?.RotateClockwise();
+                    break;
+                case PlayerShipInputKey.STOP_ROTATE:
+                    _shipMovement?.StopRotate();
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }

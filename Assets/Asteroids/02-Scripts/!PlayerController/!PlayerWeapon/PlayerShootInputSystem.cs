@@ -1,82 +1,32 @@
 ﻿namespace Asteroid
 {
-    using HandyPackage;
-    using UniRx;
-    using UniRx.Async;
-    using UnityEngine;
-
-    public class PlayerShootInputSystem : IInitializable, System.IDisposable, IPlayerInputListener
+    public class PlayerShootInputSystem : BasePlayerInputSystem
     {
-        private const string INPUT_SHOOT_NAME = "Fire1";
-
-        private GameSignals _gameSignals;
-
         private IWeapon _playerWeapon;
-        private CompositeDisposable disposables = new CompositeDisposable();
-        private CompositeDisposable inputDisposables = new CompositeDisposable();
 
-        public UniTask Initialize()
+        protected override void HandlePlayerSpawned(PlayerShipComponent playerShipController)
         {
-            _gameSignals = DIResolver.GetObject<GameSignals>();
-
-            _gameSignals.PlayerSpawnedSignal.Listen(HandlePlayerSpawned).AddTo(disposables);
-            _gameSignals.PlayerDespawnedSignal.Listen(HandlePlayerDespawned, PlayerDespawnedPrioritySignal.Priority.UNLISTEN_PLAYER_SHOOT_INPUT).AddTo(disposables);
-            _gameSignals.PlayerDoHyperSpaceSignal.Listen(HandlePlayerDoHyperSpace).AddTo(disposables);
-            _gameSignals.PlayerHyperSpaceFinishedSignal.Listen(HandlePlayerHyperSpaceFinished).AddTo(disposables);
-
-            return UniTask.CompletedTask;
-        }
-
-        public void Dispose()
-        {
-            UnlistenForPlayerInput();
-        }
-
-        private void HandlePlayerSpawned(PlayerShipComponent playerShipController)
-        {
+            base.HandlePlayerSpawned(playerShipController);
             _playerWeapon = playerShipController.PlayerWeapon;
-            ListenForPlayerInput();
         }
 
-        private bool HandlePlayerDespawned(PlayerShipComponent playerShipController)
+        protected override bool HandlePlayerDespawned(PlayerShipComponent playerShipController)
         {
-            UnlistenForPlayerInput();
+            base.HandlePlayerDespawned(playerShipController);
             _playerWeapon = null;
             return true;
         }
 
-        private void HandlePlayerDoHyperSpace()
+        protected override void HandlePlayerInput(PlayerShipInputKey inputKey)
         {
-            UnlistenForPlayerInput();
-        }
-
-        private void HandlePlayerHyperSpaceFinished()
-        {
-            ListenForPlayerInput();
-        }
-
-        public void ListenForPlayerInput()
-        {
-            Observable.EveryUpdate().Subscribe(x =>
+            switch (inputKey)
             {
-                CheckInput();
-            }).AddTo(inputDisposables);
-        }
-
-        public void UnlistenForPlayerInput()
-        {
-            inputDisposables.Clear();
-        }
-
-        private void CheckInput()
-        {
-            if (Input.GetButton(INPUT_SHOOT_NAME))
-            {
-                _playerWeapon.Shoot();
-            }
-            else if (Input.GetButtonUp(INPUT_SHOOT_NAME))
-            {
-                _playerWeapon.StopShoot();
+                case PlayerShipInputKey.SHOOT:
+                    _playerWeapon?.Shoot();
+                    break;
+                case PlayerShipInputKey.STOP_SHOOT:
+                    _playerWeapon?.StopShoot();
+                    break;
             }
         }
     }

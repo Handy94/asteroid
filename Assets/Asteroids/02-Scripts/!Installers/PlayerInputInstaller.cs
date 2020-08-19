@@ -6,9 +6,11 @@
     {
         public override void InstallDependencies()
         {
+            Container.Install<InputSignal>();
             InstallMovementSystem();
             InstallWeaponSystem();
             InstallOtherSystem();
+            Container.Install<StandalonePlayerInputListener>();
         }
 
         private void InstallMovementSystem()
