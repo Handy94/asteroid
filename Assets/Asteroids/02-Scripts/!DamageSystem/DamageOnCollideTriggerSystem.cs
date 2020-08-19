@@ -24,16 +24,17 @@ namespace Asteroid
             disposables.Clear();
         }
 
-        private void HandleGameEntityCollisionTriggered(GameEntityTagComponent damager, GameEntityTagComponent damaged)
+        private void HandleGameEntityCollisionTriggered(IDamageable<GameEntityTag> damageAble, IDamager<GameEntityTag> damager)
         {
-            DamageEntity(damaged, damager, 1);
+            DamageEntity(damageAble, damager);
         }
 
-        private void DamageEntity(GameEntityTagComponent en, GameEntityTagComponent damager, int damage)
+        private void DamageEntity(IDamageable<GameEntityTag> damageAble, IDamager<GameEntityTag> damager)
         {
-            if (en == null) return;
-            var damageAble = en.GetComponent<IDamageable<GameEntityTag>>();
-            damageAble?.Damage(damage, damager.GameEntityTag);
+            if (damageAble == null) return;
+            int damage = damager.GetDamage();
+
+            damageAble?.Damage(damage, damager.DamagerType);
         }
     }
 

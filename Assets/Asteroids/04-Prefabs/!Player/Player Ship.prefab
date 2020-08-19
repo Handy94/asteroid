@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 230776902724750513}
   - component: {fileID: 5633290577129456283}
   - component: {fileID: 5507821440098153229}
+  - component: {fileID: 6809840447808151713}
   m_Layer: 8
   m_Name: Player Ship
   m_TagString: Player
@@ -121,6 +122,7 @@ MonoBehaviour:
     - Name: _hyperSpace
       Entry: 10
       Data: 2
+  _entityHealthComponent: {fileID: 230776902724750513}
 --- !u!114 &7435538152357355289
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +152,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minRandomViewportPosition: {x: 0.1, y: 0.1}
   maxRandomViewportPosition: {x: 0.9, y: 0.9}
-  delaySpawnInMillis: 2000
+  delaySpawnInSeconds: 2
   rb: {fileID: 7435538152357355291}
   shipCollider: {fileID: 7435538152357355288}
   shipSprite: {fileID: 7435538152490363011}
@@ -206,7 +208,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57c9f7175a952846b78774c8966088b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEntityTagComponent: {fileID: 6673571106975692983}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 6809840447808151713}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: damager
+      Entry: 10
+      Data: 0
+--- !u!114 &6809840447808151713
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7435538152357355290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2844893a19cecf748be2d2730508de0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEntityTagComponent: {fileID: 6673571106975692983}
+  damage: 1
 --- !u!1 &7435538152490363005
 GameObject:
   m_ObjectHideFlags: 0

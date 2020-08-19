@@ -29,7 +29,7 @@
             this.AsteroidData = asteroidData;
             _moveDirection = dir;
             _moveSpeed = Random.Range(asteroidData.minSpeed, asteroidData.maxSpeed);
-            healthComponent.SetHealth(1, GameEntityTag.UNKNOWN);
+            healthComponent.RefillLive(GameEntityTag.UNKNOWN);
 
             _currentVelocity = _moveDirection * _moveSpeed;
         }

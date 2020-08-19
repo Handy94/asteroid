@@ -56,6 +56,8 @@
             go.transform.position = Vector3.zero;
 
             _bookKeepingInGameData.PlayerShipComponent = go.GetComponent<PlayerShipComponent>();
+            _bookKeepingInGameData.PlayerShipComponent.Init();
+
             _gameSignals.PlayerSpawnedSignal.Fire(_bookKeepingInGameData.PlayerShipComponent);
         }
 

@@ -2,7 +2,7 @@
 {
     public interface IDamageable<TDamagerSource>
     {
-        void Damage(int damage, TDamagerSource damagerSource);
+        void Damage(int damage, TDamagerSource damager);
     }
 
 }

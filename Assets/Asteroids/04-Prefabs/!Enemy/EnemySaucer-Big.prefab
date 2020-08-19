@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 8799453939132882082}
   - component: {fileID: 1773341061287853605}
   - component: {fileID: -7908894312189963435}
+  - component: {fileID: 6763471872110805989}
   - component: {fileID: 2007803980692943951}
   - component: {fileID: 4163653656692912189}
   m_Layer: 11
@@ -184,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1fe50eee78f5af409eff49db3821c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityHealthComponent: {fileID: 143372910464415589}
 --- !u!114 &1474410855333148058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -250,7 +252,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57c9f7175a952846b78774c8966088b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEntityTagComponent: {fileID: 8799453939132882082}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 6763471872110805989}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: damager
+      Entry: 10
+      Data: 0
+--- !u!114 &6763471872110805989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1474410855333148054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2844893a19cecf748be2d2730508de0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEntityTagComponent: {fileID: 8799453939132882082}
+  damage: 1
 --- !u!114 &2007803980692943951
 MonoBehaviour:
   m_ObjectHideFlags: 0

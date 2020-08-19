@@ -12,7 +12,7 @@
         public EventSignal<AsteroidComponent, GameEntityTag> AsteroidDespawnedSignal = new EventSignal<AsteroidComponent, GameEntityTag>();
 
         public EventSignal<GameObject, GameEntityTag, GameEntityTag> GameEntityDespawnedSignal = new EventSignal<GameObject, GameEntityTag, GameEntityTag>();
-        public EventSignal<GameEntityTagComponent, GameEntityTagComponent> GameEntityCollisionTriggeredSignal = new EventSignal<GameEntityTagComponent, GameEntityTagComponent>();
+        public EventSignal<IDamageable<GameEntityTag>, IDamager<GameEntityTag>> GameEntityCollisionTriggeredSignal = new EventSignal<IDamageable<GameEntityTag>, IDamager<GameEntityTag>>();
 
         public EventSignal<PlayerShipComponent> PlayerSpawnedSignal = new EventSignal<PlayerShipComponent>();
         public PlayerDespawnedPrioritySignal PlayerDespawnedSignal = new PlayerDespawnedPrioritySignal();

@@ -49,6 +49,7 @@
         {
             GameObject newEnemyGO = await _multiplePrefabMemoryPool.SpawnObject(enemyData.EnemyPrefab.gameObject, spawnPosition);
             EnemyComponent newEnemy = newEnemyGO.GetComponent<EnemyComponent>();
+            newEnemy.Init();
             newEnemy.SetData(enemyData);
             spawnedEnemies.Add(newEnemy);
 

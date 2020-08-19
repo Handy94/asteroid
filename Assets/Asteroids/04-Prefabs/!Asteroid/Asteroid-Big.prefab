@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1999878531423179340}
   - component: {fileID: 1243407092290235067}
   - component: {fileID: 3826553518593122550}
+  - component: {fileID: 1694696203928533775}
   m_Layer: 10
   m_Name: Asteroid-Big
   m_TagString: Untagged
@@ -88,6 +89,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 6968610189589346435}
+  healthComponent: {fileID: 1999878531423179340}
 --- !u!114 &6092309140280602222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,7 +142,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b57c9f7175a952846b78774c8966088b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEntityTagComponent: {fileID: 6092309140280602222}
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects:
+    - {fileID: 1694696203928533775}
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: damager
+      Entry: 10
+      Data: 0
+--- !u!114 &1694696203928533775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4202123170665239102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2844893a19cecf748be2d2730508de0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameEntityTagComponent: {fileID: 6092309140280602222}
+  damage: 1
 --- !u!1 &4202123170937947059
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +214,8 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -197,6 +227,7 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

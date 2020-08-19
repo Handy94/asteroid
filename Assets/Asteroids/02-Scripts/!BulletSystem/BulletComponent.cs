@@ -9,6 +9,8 @@ namespace Asteroid
         public float baseSpeed = 10;
         public float lifeTime = 2f;
 
+        [SerializeField] private EntityHealthComponent _healthComponent;
+
         private MultiplePrefabMemoryPool _multiplePrefabMemoryPool;
         private GameSignals _gameSignals;
 
@@ -19,6 +21,7 @@ namespace Asteroid
         private void Awake()
         {
             if (rb == null) rb = GetComponent<Rigidbody2D>();
+            if (_healthComponent == null) _healthComponent = GetComponent<EntityHealthComponent>();
             _multiplePrefabMemoryPool = DIResolver.GetObject<MultiplePrefabMemoryPool>();
             _gameSignals = DIResolver.GetObject<GameSignals>();
         }
@@ -47,6 +50,7 @@ namespace Asteroid
             _currentLife = 0;
             _isAlive = true;
             _moveDirection = dir;
+            _healthComponent.RefillLive(GameEntityTag.UNKNOWN);
         }
 
         private void Dead()
